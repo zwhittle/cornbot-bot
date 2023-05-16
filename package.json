@@ -7,7 +7,7 @@
     "build": "tsc",
     "deploy": "ts-node src/deployCommands.ts",
     "bot": "ts-node src/cornbot.ts",
-    "start": "node dist/index.js",
+    "start": "node dist/cornbot.js",
     "postinstall": "tsc && mv -i -v static dist/static/"
   },
   "author": "",
