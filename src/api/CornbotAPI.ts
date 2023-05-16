@@ -45,13 +45,13 @@ export class CornbotAPI<T> {
 
   async _post(data: T): Promise<CornbotAPIResponse> {
     const dstr = JSON.stringify(data)
-    console.log(dstr)
     const res = await fetch(this._url(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
-
+    
+    console.log(dstr, res.status)
     return { status: res.status, data: res.json() as T }
   }
 
