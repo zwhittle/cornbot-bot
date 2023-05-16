@@ -62,6 +62,7 @@ export class CornbotAPI<T> {
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
+    console.log(dstr, res, res.status)
     return { status: res.status, data: res.json() as T }
   }
 
