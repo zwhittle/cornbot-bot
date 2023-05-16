@@ -26,7 +26,7 @@ export class CornbotAPI<T> {
   }
 
   _sync(items: { id: string | number; data: T }[]) {
-    console.log(...items)
+    // console.log(...items)
 
     items.map(async item => {
       const id = item.id
@@ -36,11 +36,13 @@ export class CornbotAPI<T> {
       console.log(`Creating ${logTag}...`)
       const postRes = await this._post(data)
       if (postRes.status === 200) console.log(`${logTag} Created`)
-      else {
+      else if (postRes.status === 409) {
         console.log(`${logTag} already exists. Updating...`)
         const putRes = await this._put(id, data)
         if (putRes.status != 200) console.error(putRes)
         else console.log(`${logTag} Updated`)
+      } else if (postRes.status === 404) {
+        console.error(postRes)
       }
     })
   }
