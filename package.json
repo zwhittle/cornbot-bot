@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "deploy": "ts-node src/deployCommands.ts",
-    "bot": "ts-node src/cornbot.ts"
+    "bot": "ts-node src/cornbot.ts",
+    "start": "node dist/index.js",
+    "postinstall": "tsc && mv -i -v public dist/"
   },
   "author": "",
   "license": "ISC",
