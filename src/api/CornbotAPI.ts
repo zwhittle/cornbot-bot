@@ -39,10 +39,12 @@ export class CornbotAPI<T> {
       else if (postRes.status === 409) {
         console.log(`${logTag} already exists. Updating...`)
         const putRes = await this._put(id, data)
-        if (putRes.status != 200) console.error(putRes)
+        if (putRes.status != 200) console.error(`PutResError: ${putRes}`)
         else console.log(`${logTag} Updated`)
       } else if (postRes.status === 404) {
-        console.error(postRes)
+        console.error(`PostResError: ${postRes}`)
+      } else {
+        console.error(`PostResError: ${postRes}`)
       }
     })
   }
