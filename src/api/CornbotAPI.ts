@@ -26,6 +26,8 @@ export class CornbotAPI<T> {
   }
 
   _sync(items: { id: string | number; data: T }[]) {
+    console.log(...items)
+
     items.map(async item => {
       const id = item.id
       const data = item.data
