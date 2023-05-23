@@ -26,6 +26,8 @@ export class CornbotAPI<T> {
   }
 
   _sync(items: { id: string | number; data: T }[]) {
+    // console.log(...items)
+
     items.map(async item => {
       const id = item.id
       const data = item.data
@@ -34,24 +36,28 @@ export class CornbotAPI<T> {
       console.log(`Creating ${logTag}...`)
       const postRes = await this._post(data)
       if (postRes.status === 200) console.log(`${logTag} Created`)
-      else {
+      else if (postRes.status === 409) {
         console.log(`${logTag} already exists. Updating...`)
         const putRes = await this._put(id, data)
-        if (putRes.status != 200) console.error(putRes)
+        if (putRes.status != 200) console.error(`PutResError: ${putRes}`)
         else console.log(`${logTag} Updated`)
+      } else if (postRes.status === 404) {
+        console.error(`PostResError: ${postRes}`)
+      } else {
+        console.error(`PostResError: ${postRes}`)
       }
     })
   }
 
   async _post(data: T): Promise<CornbotAPIResponse> {
     const dstr = JSON.stringify(data)
-    console.log(dstr)
     const res = await fetch(this._url(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
-
+    
+    console.log(dstr, res.status)
     return { status: res.status, data: res.json() as T }
   }
 
@@ -62,6 +68,7 @@ export class CornbotAPI<T> {
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
+    // console.log(dstr, res, res.status)
     return { status: res.status, data: res.json() as T }
   }
 
