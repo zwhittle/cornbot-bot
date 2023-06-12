@@ -19,13 +19,6 @@ export const birthday: Command = {
           'Enter a number 1-12 for your birthday month (January is 1, February is 2, etc.)'
         )
         .setRequired(true)
-    )
-    .addStringOption(option =>
-      option
-        .setName('public')
-        .setDescription('Do you want to make your birthday public? (Default is "yes")')
-        .setRequired(true)
-        .addChoices({ name: 'yes', value: 'yes' }, { name: 'no', value: 'no' })
     ),
   run: async (interaction: ChatInputCommandInteraction) => {
     const day = interaction.options.getInteger('day')

@@ -13,7 +13,6 @@ export class Member {
   pronouns: string
   birthdayMonth: number
   birthdayDay: number
-  birthdayPublic: Boolean
   joinedAt: Date
   corns: number
 
@@ -30,7 +29,6 @@ export class Member {
     pronouns: string,
     birthdayMonth: number,
     birthdayDay: number,
-    birthdayPublic: Boolean,
     joinedAt: Date,
     corns: number
   ) {
@@ -46,7 +44,6 @@ export class Member {
     this.pronouns = pronouns
     this.birthdayMonth = birthdayMonth
     this.birthdayDay = birthdayDay
-    this.birthdayPublic = birthdayPublic
     this.joinedAt = joinedAt
     this.corns = corns
   }
@@ -65,7 +62,6 @@ export class Member {
       'None saved',
       undefined,
       undefined,
-      false,
       memberData.joinedAt,
       0
     )
