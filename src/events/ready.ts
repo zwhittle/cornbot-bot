@@ -11,12 +11,12 @@ export const ready = async (BOT: Client) => {
 
   const connectedGuilds = BOT.guilds.cache
 
-  analyticsAPI
-    .create({
-      type: 'event',
-      event: 'ready',
-    })
-    .then(() => console.log(`Event logged`))
+  // analyticsAPI
+  //   .create({
+  //     type: 'event',
+  //     event: 'ready',
+  //   })
+  //   .then(() => console.log(`Event logged`))
 
   console.log('Syncing Guilds...')
   guildsApi.sync(connectedGuilds)
