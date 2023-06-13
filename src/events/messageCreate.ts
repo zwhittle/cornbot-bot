@@ -6,6 +6,7 @@ import { UserReport } from '../interfaces/UserReport'
 import { CORN_ID, badBotResponse, goodBotResponse } from '../utils/utils'
 import { deleteAllEvents, launchHalloween2023Tour } from '../utils/exec'
 import { AnalyticsAPI } from '../api/AnalyticsAPI'
+import { MessagesAPI } from '../api/MessagesAPI'
 
 export async function messageCreate(message: Message<boolean>) {
   const content = message.content
@@ -13,15 +14,31 @@ export async function messageCreate(message: Message<boolean>) {
   const guildsApi = new GuildsAPI()
   const membersApi = new MembersAPI()
 
-  new AnalyticsAPI()
+  new MessagesAPI()
     .create({
-      type: 'event',
-      event: 'messageCreate',
-      guildId: message.guild?.id,
-      channelId: message.channel?.id,
-      memberId: message.author?.id,
+      id: message.id,
+      authorId: message.author.id,
+      guildId: message.guildId,
+      channelId: message.channelId,
+      content: message.content,
+      discordCreatedAt: message.createdAt,
+      editable: message.editable,
+      url: message.url,
     })
-    .then(() => console.log(`Event logged`))
+    .then(() => {
+      console.log(`Message logged`)
+
+      new AnalyticsAPI()
+        .create({
+          type: 'event',
+          event: 'messageCreate',
+          guildId: message.guild?.id,
+          channelId: message.channel?.id,
+          memberId: message.author?.id,
+          messageId: message.id,
+        })
+        .then(() => console.log(`Event logged`))
+    })
 
   if (!message.guild && message.author.id === CORN_ID) {
     console.log(message.content, message.cleanContent)

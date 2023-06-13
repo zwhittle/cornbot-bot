@@ -1,3 +1,5 @@
+import { Message } from "./Message"
+
 export interface AnalyticsEvent {
   id?: number
   type: string
@@ -5,5 +7,7 @@ export interface AnalyticsEvent {
   guildId?: string
   channelId?: string
   memberId?: string
+  messageId?: string
+  message?: Message
   timestamp?: Date
 }

@@ -5,6 +5,7 @@ import { UserReport } from '../interfaces/UserReport'
 import { submitReport } from '../utils/commands'
 import { badBotResponse, goodBotResponse } from '../utils/utils'
 import { AnalyticsAPI } from '../api/AnalyticsAPI'
+import { MessagesAPI } from '../api/MessagesAPI'
 
 export async function messageUpdate(
   oldMessage: Message<boolean> | PartialMessage,
@@ -18,6 +19,10 @@ export async function messageUpdate(
   const guild = await guildsApi.one(newMessage.guild.id)
   const member = await membersApi.one(newMessage.member.user.id)
 
+  new MessagesAPI()
+    .update(newMessage.id, { content: newMessage.content })
+    .then(() => console.log(`Message logged`))
+
   new AnalyticsAPI()
     .create({
       type: 'event',
@@ -25,6 +30,7 @@ export async function messageUpdate(
       guildId: newMessage.guild?.id,
       memberId: newMessage.author?.id,
       channelId: newMessage.channel?.id,
+      messageId: newMessage.id
     })
     .then(() => console.log(`Event logged`))
 
