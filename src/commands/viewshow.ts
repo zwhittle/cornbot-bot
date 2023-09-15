@@ -48,10 +48,18 @@ export const viewShow: Command = {
 
     const guild = interaction.guild
     const role = guild.roles.cache.find(r => r.name === showInput)
-    const attendees = role.members
-
     let attendeesString = ''
-    attendees.map(a => (attendeesString += `<@${a.id}>\n`))
+    
+    try {
+      const attendees = role.members
+      attendees.map(a => (attendeesString += `<@${a.id}>\n`))
+    } catch (error) {
+      console.log("Failed fetching role members.")
+
+      const rolesString = guild.roles.cache.map(role => role.name).join(',\n')
+      console.log(`Roles: ${rolesString}`)
+    }
+
     if (attendeesString === '') attendeesString = 'No attendees from this Discord :('
 
     const venueString = show.venue.maps_url
