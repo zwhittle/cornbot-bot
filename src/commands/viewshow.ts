@@ -1,9 +1,12 @@
+import("dotenv/config")
 import { SlashCommandBuilder, EmbedBuilder } from '@discordjs/builders'
 import { Command } from '../interfaces/Command'
 import { tourData } from '../data/tourdata'
 import { ChatInputCommandInteraction } from 'discord.js'
 import { formatDateLong } from '../utils/utils'
 import { parseISO } from 'date-fns'
+
+const STATIC_URL = process.env.STATIC_URL as string
 
 const command = () => {
   const slashCommandBuilder = new SlashCommandBuilder()
@@ -81,7 +84,7 @@ export const viewShow: Command = {
 
     await interaction.reply({
       embeds: [embed],
-      files: [{ attachment: tour.poster, name: 'image.jpeg' }],
+      files: [{ attachment: STATIC_URL + tour.poster, name: 'image.jpeg' }],
       ephemeral: true,
     })
   },

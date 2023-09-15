@@ -34,7 +34,7 @@ export const tourData: Tour[] = [
     key: 'canada2022',
     name: 'Canada Summer 2022',
     description: 'The Band tours Canada in Summer 2022',
-    poster: './static/tour_canada_2022.jpeg',
+    poster: 'tour_canada_2022.jpeg',
     dates: [
       {
         name: 'Ottawa, ON',
@@ -78,7 +78,7 @@ export const tourData: Tour[] = [
     key: 'seachangefest2022',
     name: 'Sea Change Super Friendly Fest 2022',
     description: 'The Band headlines Sea Change Super Friendly Fest 2022',
-    poster: './static/tour_seachange_2022.jpeg',
+    poster: 'tour_seachange_2022.jpeg',
     dates: [
       {
         name: 'Edmonton, AB',
@@ -92,7 +92,7 @@ export const tourData: Tour[] = [
     key: 'australia2023',
     name: 'Australia 2023',
     description: 'The Band joins Plini across Australia in February 2023',
-    poster: './static/tour_australia_2023.jpeg',
+    poster: 'tour_australia_2023.jpeg',
     dates: [
       { name: 'Sydney', date: '2023-01-28', venue: { name: 'Metro Theatre' }, role: 'Sydney_2023' },
       {
@@ -127,7 +127,7 @@ export const tourData: Tour[] = [
     key: 'ontario2023',
     name: 'Ontario 2023',
     description: 'The Band embarks on Ontario Spring Tour 2023',
-    poster: './static/tour_ontario_2023.png',
+    poster: 'tour_ontario_2023.png',
     dates: [
       {
         name: 'London, ON',
@@ -183,7 +183,7 @@ export const tourData: Tour[] = [
     key: 'halloween2023',
     name: 'Halloween is For Always',
     description: 'The Band takes a Halloween costume party on tour across North America',
-    poster: './static/tour_halloween_2023.jpg',
+    poster: 'tour_canada_2022.jpeg',
     dates: [
       {
         name: 'Ferndale, MI',
