@@ -4,6 +4,19 @@ import { formattedTimestamp } from './utils'
 import { Feedback } from '../interfaces/Feedback'
 import { UserReport } from 'src/interfaces/UserReport'
 
+export async function ask(question: string, client: Client): Promise<string> {
+  const res = await fetch('http://127.0.0.1:5000/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: `{"question": "${question}"}`,
+    })
+
+    const data = await res.json()
+    console.log(data)
+    
+    return data.answer
+}
+
 export async function submitFeedback(feedback: Feedback, client: Client) {
   const guild = await client.guilds.fetch(feedback.guildId)
   const channel = (await guild.channels.fetch(feedback.channelId)) as GuildChannel

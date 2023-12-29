@@ -9,8 +9,10 @@ import { viewShow } from './viewshow'
 import { attendShow } from './attendshow'
 import { ctxUserInfo } from './ctxUserInfo'
 import { joke } from './joke'
+import { ask } from './ask'
 
 export const CommandList: Command[] = [
+  ask,
   corn,
   joke,
   feedback,
