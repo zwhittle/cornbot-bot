@@ -183,7 +183,7 @@ export const tourData: Tour[] = [
     key: 'halloween2023',
     name: 'Halloween is For Always',
     description: 'The Band takes a Halloween costume party on tour across North America',
-    poster: 'tour_canada_2022.jpeg',
+    poster: 'tour_halloween_2023.jpeg',
     dates: [
       {
         name: 'Ferndale, MI',
@@ -697,7 +697,7 @@ export const tourData: Tour[] = [
     key: 'volition2024',
     name: 'Volition X',
     description: 'The Band tours North America to celebrate the 10th anniversary of Volition',
-    poster: 'tour_volitionX_2024.jpeg',
+    poster: 'tour_volitionx_2024.jpeg',
     dates: [
       {
         name: 'Detroit, MI',
