@@ -5,6 +5,8 @@ import {
 } from 'discord.js'
 import { tourData } from '../data/tourdata'
 
+const STATIC_URL = process.env.STATIC_URL as string
+
 export async function launchVolitionXTour(client: Client) {
   const cornserv = await client.guilds.fetch('847637234613878824')
   const volitionTour = tourData.find(tour => tour.key === 'volition2024')
@@ -32,7 +34,7 @@ export async function launchVolitionXTour(client: Client) {
       entityType: 3,
       description: description,
       entityMetadata: { location: venue.name },
-      image: 'https://heroku-cornbot.s3.amazonaws.com/tour_volitionx_2024.jpeg',
+      image: STATIC_URL + volitionTour.poster,
     }
 
     events.push(showEvent)
@@ -75,7 +77,7 @@ export async function launchHalloween2023Tour(client: Client) {
       entityType: 3,
       description: description,
       entityMetadata: { location: venue.name },
-      image: halloweenTour.poster,
+      image: STATIC_URL + halloweenTour.poster,
     }
 
     events.push(showEvent)
