@@ -32,7 +32,7 @@ export async function launchVolitionXTour(client: Client) {
       entityType: 3,
       description: description,
       entityMetadata: { location: venue.name },
-      image: volitionTour.poster,
+      image: 'https://heroku-cornbot.s3.amazonaws.com/tour_volitionx_2024.jpeg',
     }
 
     events.push(showEvent)
