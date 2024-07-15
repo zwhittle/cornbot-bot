@@ -7,7 +7,7 @@ import { tourData } from '../data/tourdata'
 
 export async function launchVolitionXTour(client: Client) {
   const cornserv = await client.guilds.fetch('847637234613878824')
-  const volitionTour = tourData.find(tour => tour.key === 'volitionX')
+  const volitionTour = tourData.find(tour => tour.key === 'volition2024')
 
   const events: GuildScheduledEventCreateOptions[] = []
 

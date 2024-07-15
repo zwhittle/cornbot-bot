@@ -694,7 +694,7 @@ export const tourData: Tour[] = [
     ],
   },
   {
-    key: 'volitionX',
+    key: 'volition2024',
     name: 'Volition X',
     description: 'The Band tours North America to celebrate the 10th anniversary of Volition',
     poster: 'tour_volitionX_2024.jpeg',
