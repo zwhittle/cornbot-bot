@@ -29,7 +29,7 @@ export async function launchVolitionXTour(client: Client) {
     const showEvent: GuildScheduledEventCreateOptions = {
       name: show.name,
       scheduledStartTime: startTime,
-      scheduledEndTime: `${show.date}T23:00:00-04:00`,
+      scheduledEndTime: `${show.date}T23:00:00-07:00`,
       privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
       entityType: 3,
       description: description,
