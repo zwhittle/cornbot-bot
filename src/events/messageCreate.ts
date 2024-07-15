@@ -4,7 +4,7 @@ import { Message } from 'discord.js'
 import { submitReport } from '../utils/commands'
 import { UserReport } from '../interfaces/UserReport'
 import { CORN_ID, badBotResponse, goodBotResponse } from '../utils/utils'
-import { deleteAllEvents, launchSpring2024Tour, launchVolitionXTour } from '../utils/exec'
+import { deleteAllEvents, launchVolitionXTour } from '../utils/exec'
 import { AnalyticsAPI } from '../api/AnalyticsAPI'
 import { MessagesAPI } from '../api/MessagesAPI'
 
@@ -49,8 +49,6 @@ export async function messageCreate(message: Message<boolean>) {
       else if (command === 'test') await message.reply(`test`)
       else if (command === 'launch volition x tour') {
         await launchVolitionXTour(message.client)
-      } else if (command === 'launch spring 2024 tour') {
-        await launchSpring2024Tour(message.client)
       } else if (command === 'delete all events') {
         await deleteAllEvents(message.client)
       }
