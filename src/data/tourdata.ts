@@ -30,64 +30,64 @@ export interface Tour {
 }
 
 export const tourData: Tour[] = [
-  // {
-  //   key: 'canada2022',
-  //   name: 'Canada Summer 2022',
-  //   description: 'The Band tours Canada in Summer 2022',
-  //   poster: 'tour_canada_2022.jpeg',
-  //   dates: [
-  //     {
-  //       name: 'Ottawa, ON',
-  //       date: '2022-06-03',
-  //       venue: { name: 'Bronson Centre' },
-  //       role: 'Ottawa_2022',
-  //     },
-  //     {
-  //       name: 'Montreal, QC',
-  //       date: '2022-06-04',
-  //       venue: { name: 'Theatre Fairmount' },
-  //       role: 'Montreal_2022',
-  //     },
-  //     {
-  //       name: 'Quebec City, QC',
-  //       date: '2022-06-05',
-  //       venue: { name: 'Imperial Hall' },
-  //       role: 'Quebec_2022',
-  //     },
-  //     {
-  //       name: 'Oshawa, ON',
-  //       date: '2022-06-09',
-  //       venue: { name: 'Biltmore Theatre' },
-  //       role: 'Oshawa_2022',
-  //     },
-  //     {
-  //       name: 'Toronto, ON',
-  //       date: '2022-06-10',
-  //       venue: { name: 'The Danforth' },
-  //       role: 'Toronto_2022',
-  //     },
-  //     {
-  //       name: 'London, ON',
-  //       date: '2022-06-11',
-  //       venue: { name: 'London Music Hall' },
-  //       role: 'London_2022',
-  //     },
-  //   ],
-  // },
-  // {
-  //   key: 'seachangefest2022',
-  //   name: 'Sea Change Super Friendly Fest 2022',
-  //   description: 'The Band headlines Sea Change Super Friendly Fest 2022',
-  //   poster: 'tour_seachange_2022.jpeg',
-  //   dates: [
-  //     {
-  //       name: 'Edmonton, AB',
-  //       date: '2022-09-11',
-  //       venue: { name: 'Union Hall' },
-  //       role: 'Edmonton_2022',
-  //     },
-  //   ],
-  // },
+  {
+    key: 'canada2022',
+    name: 'Canada Summer 2022',
+    description: 'The Band tours Canada in Summer 2022',
+    poster: 'tour_canada_2022.jpeg',
+    dates: [
+      {
+        name: 'Ottawa, ON',
+        date: '2022-06-03',
+        venue: { name: 'Bronson Centre' },
+        role: 'Ottawa_2022',
+      },
+      {
+        name: 'Montreal, QC',
+        date: '2022-06-04',
+        venue: { name: 'Theatre Fairmount' },
+        role: 'Montreal_2022',
+      },
+      {
+        name: 'Quebec City, QC',
+        date: '2022-06-05',
+        venue: { name: 'Imperial Hall' },
+        role: 'Quebec_2022',
+      },
+      {
+        name: 'Oshawa, ON',
+        date: '2022-06-09',
+        venue: { name: 'Biltmore Theatre' },
+        role: 'Oshawa_2022',
+      },
+      {
+        name: 'Toronto, ON',
+        date: '2022-06-10',
+        venue: { name: 'The Danforth' },
+        role: 'Toronto_2022',
+      },
+      {
+        name: 'London, ON',
+        date: '2022-06-11',
+        venue: { name: 'London Music Hall' },
+        role: 'London_2022',
+      },
+    ],
+  },
+  {
+    key: 'seachangefest2022',
+    name: 'Sea Change Super Friendly Fest 2022',
+    description: 'The Band headlines Sea Change Super Friendly Fest 2022',
+    poster: 'tour_seachange_2022.jpeg',
+    dates: [
+      {
+        name: 'Edmonton, AB',
+        date: '2022-09-11',
+        venue: { name: 'Union Hall' },
+        role: 'Edmonton_2022',
+      },
+    ],
+  },
   {
     key: 'australia2023',
     name: 'Australia 2023',
