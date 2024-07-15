@@ -8,7 +8,7 @@ import { tourData } from '../data/tourdata'
 const STATIC_URL = process.env.STATIC_URL as string
 
 export async function launchVolitionXTour(client: Client) {
-  const cornserv = await client.guilds.fetch('847637234613878824')
+  const cornserv = await client.guilds.fetch('322203935786008586')
   const volitionTour = tourData.find(tour => tour.key === 'volition2024')
 
   const events: GuildScheduledEventCreateOptions[] = []
@@ -92,7 +92,7 @@ export async function launchHalloween2023Tour(client: Client) {
 }
 
 export async function deleteAllEvents(client: Client) {
-  const cornserv = await client.guilds.fetch('847637234613878824')
+  const cornserv = await client.guilds.fetch('322203935786008586')
   const events = await cornserv.scheduledEvents.fetch()
   const count = events.entries.length
   events.map(event => event.delete().then(e => console.log(`${e.name} deleted`)))
