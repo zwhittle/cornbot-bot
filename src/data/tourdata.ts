@@ -1164,4 +1164,380 @@ export const tourData: Tour[] = [
       },
     ],
   },
+  {
+    key: 'comacliptic2025',
+    name: 'BTBAM Comalaska Tour',
+    description: 'The Band tours North America supporting Between the Buried and Me',
+    poster: 'comacliptic2025.jpg',
+    dates: [
+      {
+        "name": "Tillsonburg, ON (Night One)",
+        "date": "2025-04-26",
+        "role": "Tillsonburg_Night_One_2025",
+        "venue": {
+          "name": "The Mill",
+          "address": {
+            "street": "20 John Pound Rd",
+            "city": "Tillsonburg",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "N4G 0B9"
+          },
+          "maps_url": "https://maps.app.goo.gl/Jio2swrDcmcUToGt7"
+        }
+      },
+      {
+        "name": "Tillsonburg, ON (Night Two)",
+        "date": "2025-04-27",
+        "role": "Tillsonburg_Night_Two_2025",
+        "venue": {
+          "name": "The Mill",
+          "address": {
+            "street": "20 John Pound Rd",
+            "city": "Tillsonburg",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "N4G 0B9"
+          },
+          "maps_url": "https://maps.app.goo.gl/Jio2swrDcmcUToGt7"
+        }
+      },
+      {
+        "name": "Baltimore, MD",
+        "date": "2025-04-29",
+        "role": "Baltimore_2025",
+        "venue": {
+          "name": "Soundstage",
+          "address": {
+            "street": "124 Market Place",
+            "city": "Baltimore",
+            "state_province": "MD",
+            "country": "US",
+            "postal": "21202"
+          },
+          "maps_url": "https://maps.app.goo.gl/YHNZ8FPtJ6zzXmCQA"
+        }
+      },
+      {
+        "name": "Cleveland, OH",
+        "date": "2025-04-30",
+        "role": "Cleveland_2025",
+        "venue": {
+          "name": "House of Blues",
+          "address": {
+            "street": "308 Euclid Ave",
+            "city": "Cleveland",
+            "state_province": "OH",
+            "country": "US",
+            "postal": "44114"
+          },
+          "maps_url": "https://maps.app.goo.gl/8zZuLVieg7sZjWd67"
+        }
+      },
+      {
+        "name": "Grand Rapids, MI",
+        "date": "2025-05-01",
+        "role": "Grand_Rapids_2025",
+        "venue": {
+          "name": "Elevation",
+          "address": {
+            "street": "133 Cesar E. Chavez Ave SW",
+            "city": "Grand Rapids",
+            "state_province": "MI",
+            "country": "US",
+            "postal": "49503"
+          },
+          "maps_url": "https://maps.app.goo.gl/zfGYK1PXiaaU1shLA"
+        }
+      },
+      {
+        "name": "Lawrence, KS",
+        "date": "2025-05-02",
+        "role": "Lawrence_2025",
+        "venue": {
+          "name": "The Granada",
+          "address": {
+            "street": "1020 Massachusetts St",
+            "city": "Lawrence",
+            "state_province": "KS",
+            "country": "US",
+            "postal": "66044"
+          },
+          "maps_url": "https://maps.app.goo.gl/GuGgiHt8hHmziULY7"
+        }
+      },
+      {
+        "name": "Omaha, NE",
+        "date": "2025-05-03",
+        "role": "Omaha_2025",
+        "venue": {
+          "name": "The Waiting Room",
+          "address": {
+            "street": "6212 Maple St",
+            "city": "Omaha",
+            "state_province": "NE",
+            "country": "US",
+            "postal": "68104"
+          },
+          "maps_url": "https://maps.app.goo.gl/iHMTnFr4D3A3qFxG7"
+        }
+      },
+      {
+        "name": "Albuquerque, NM",
+        "date": "2025-05-04",
+        "role": "Albuquerque_2025",
+        "venue": {
+          "name": "Sunshine Theater",
+          "address": {
+            "street": "120 Central Ave SW",
+            "city": "Albuquerque",
+            "state_province": "NM",
+            "country": "US",
+            "postal": "87102"
+          },
+          "maps_url": "https://maps.app.goo.gl/fVeZmwsmtQwBLxkS7"
+        }
+      },
+      {
+        "name": "Tucson, AZ",
+        "date": "2025-05-05",
+        "role": "Tucson_2025",
+        "venue": {
+          "name": "Rialto Theatre",
+          "address": {
+            "street": "318 E Congress St",
+            "city": "Tucson",
+            "state_province": "AZ",
+            "country": "US",
+            "postal": "85701"
+          },
+          "maps_url": "https://maps.app.goo.gl/YsiBfQkgBLkemQJP7"
+        }
+      },
+      {
+        "name": "Los Angeles, CA",
+        "date": "2025-05-07",
+        "role": "Los_Angeles_2025",
+        "venue": {
+          "name": "The Belasco",
+          "address": {
+            "street": "1050 S Hill St",
+            "city": "Los Angeles",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "90015"
+          },
+          "maps_url": "https://maps.app.goo.gl/u7Dpmq6y46oRxwdo6"
+        }
+      },
+      {
+        "name": "San Diego, CA",
+        "date": "2025-05-08",
+        "role": "San_Diego_2025",
+        "venue": {
+          "name": "Observatory North Park",
+          "address": {
+            "street": "2891 University Ave",
+            "city": "San Diego",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "92104"
+          },
+          "maps_url": "https://maps.app.goo.gl/LNPvejpHNQXGgoNAA"
+        }
+      },
+      {
+        "name": "Sacramento, CA",
+        "date": "2025-05-09",
+        "role": "Sacramento_2025",
+        "venue": {
+          "name": "Ace of Spades",
+          "address": {
+            "street": "1417 R St",
+            "city": "Sacramento",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "95811"
+          },
+          "maps_url": "https://maps.app.goo.gl/sfVNWPfoQUNdqFug7"
+        }
+      },
+      {
+        "name": "Salt Lake City, UT",
+        "date": "2025-05-11",
+        "role": "Salt_Lake_City_2025",
+        "venue": {
+          "name": "The Grand @ The Complex",
+          "address": {
+            "street": "537 W 100 S",
+            "city": "Salt Lake City",
+            "state_province": "UT",
+            "country": "US",
+            "postal": "84101"
+          },
+          "maps_url": "https://maps.app.goo.gl/3zHbz7NNiSJxZTUb8"
+        }
+      },
+      {
+        "name": "Colorado Springs, CO",
+        "date": "2025-05-13",
+        "role": "Colorado_Springs_2025",
+        "venue": {
+          "name": "Black Sheep",
+          "address": {
+            "street": "2106 E Platte Ave",
+            "city": "Colorado Springs",
+            "state_province": "CO",
+            "country": "US",
+            "postal": "80909"
+          },
+          "maps_url": "https://maps.app.goo.gl/robyZJAEi9DgMCaX7"
+        }
+      },
+      {
+        "name": "Tulsa, OK",
+        "date": "2025-05-15",
+        "role": "Tulsa_2025",
+        "venue": {
+          "name": "Vanguard",
+          "address": {
+            "street": "222 N Main St",
+            "city": "Tulsa",
+            "state_province": "OK",
+            "country": "US",
+            "postal": "74103"
+          },
+          "maps_url": "https://maps.app.goo.gl/WR28VdTpY6EKQo676"
+        }
+      },
+      {
+        "name": "St. Louis, MO",
+        "date": "2025-05-16",
+        "role": "St_Louis_2025",
+        "venue": {
+          "name": "Delmar Hall",
+          "address": {
+            "street": "6133 Delmar Blvd",
+            "city": "St. Louis",
+            "state_province": "MO",
+            "country": "US",
+            "postal": "63112"
+          },
+          "maps_url": "https://maps.app.goo.gl/8iHg1N7cgiepwVR56"
+        }
+      },
+      {
+        "name": "West Chicago, IL",
+        "date": "2025-05-17",
+        "role": "West_Chicago_2025",
+        "venue": {
+          "name": "The WC Social Club",
+          "address": {
+            "street": "920 Roosevelt Rd",
+            "city": "West Chicago",
+            "state_province": "IL",
+            "country": "US",
+            "postal": "60185"
+          },
+          "maps_url": "https://maps.app.goo.gl/hAuFo9adHTrH2qGc6"
+        }
+      },
+      {
+        "name": "Indianapolis, IN",
+        "date": "2025-05-18",
+        "role": "Indianapolis_2025",
+        "venue": {
+          "name": "Deluxe @ Old National Centre",
+          "address": {
+            "street": "502 N New Jersey St",
+            "city": "Indianapolis",
+            "state_province": "IN",
+            "country": "US",
+            "postal": "46204"
+          },
+          "maps_url": "https://maps.app.goo.gl/XLkwaQnnLf89MGRz9"
+        }
+      },
+      {
+        "name": "Asheville, NC",
+        "date": "2025-05-19",
+        "role": "Asheville_2025",
+        "venue": {
+          "name": "The Orange Peel",
+          "address": {
+            "street": "101 Biltmore Ave",
+            "city": "Asheville",
+            "state_province": "NC",
+            "country": "US",
+            "postal": "28801"
+          },
+          "maps_url": "https://maps.app.goo.gl/wa6gNYdSfRPJKbuJ8"
+        }
+      },
+      {
+        "name": "Norfolk, VA",
+        "date": "2025-05-21",
+        "role": "Norfolk_2025",
+        "venue": {
+          "name": "The Norva",
+          "address": {
+            "street": "317 Monticello Ave",
+            "city": "Norfolk",
+            "state_province": "VA",
+            "country": "US",
+            "postal": "23510"
+          },
+          "maps_url": "https://maps.app.goo.gl/ja8gWQusPgjA3CZt6"
+        }
+      },
+      {
+        "name": "Asbury, NJ",
+        "date": "2025-05-23",
+        "role": "Asbury_2025",
+        "venue": {
+          "name": "House of Independents",
+          "address": {
+            "street": "572 Cookman Ave",
+            "city": "Asbury",
+            "state_province": "NJ",
+            "country": "US",
+            "postal": "07221"
+          },
+          "maps_url": "https://maps.app.goo.gl/c4xngig2HjWTeNLs5"
+        }
+      },
+      {
+        "name": "New Kensington, PA",
+        "date": "2025-05-24",
+        "role": "New_Kensington_2025",
+        "venue": {
+          "name": "Preserving",
+          "address": {
+            "street": "1101 5th Ave Basement",
+            "city": "New Kensington",
+            "state_province": "PA",
+            "country": "US",
+            "postal": "15068"
+          },
+          "maps_url": "https://maps.app.goo.gl/x3R9yYNgm8mcNKsj9"
+        }
+      },
+      {
+        "name": "Toronto, ON",
+        "date": "2025-05-29",
+        "role": "Toronto_2025",
+        "venue": {
+          "name": "Lee's Palace",
+          "address": {
+            "street": "529 Bloor St W",
+            "city": "Toronto",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "M5S 1Y5"
+          },
+          "maps_url": "https://maps.app.goo.gl/FzkbXNSxGgcHY8Mq6"
+        }
+      }
+    ]    
+  }
 ]
