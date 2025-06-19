@@ -1168,7 +1168,7 @@ export const tourData: Tour[] = [
     key: 'comacliptic2025',
     name: 'BTBAM Comalaska Tour',
     description: 'The Band tours North America supporting Between the Buried and Me',
-    poster: 'comacliptic2025.jpg',
+    poster: 'tour_comalaska_2025.jpeg',
     dates: [
       {
         "name": "Tillsonburg, ON (Night One)",
