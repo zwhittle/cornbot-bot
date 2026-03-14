@@ -3,6 +3,7 @@ import { MembersAPI } from '../api/MembersAPI'
 import { GuildsAPI } from '../api/GuildsAPI'
 import { ToursAPI } from '../api/ToursAPI'
 import { TourDate, Address } from '../interfaces/Tour'
+import { AttendanceAPI } from '../api/AttendanceAPI'
 import { CORN_ID } from '../utils/utils'
 
 export interface ToolContext {
@@ -159,12 +160,18 @@ export async function executeTool(
 
         // Try ID-based lookup first, fall back to name-based
         let foundRole: import('discord.js').Role | undefined
+        let matchedTourKey: string | undefined
+        let matchedTourDate: TourDate | undefined
         const allTours = await new ToursAPI().all()
         for (const tour of allTours) {
           const tourDate = tour.dates.find(d => d.role.replace(/_/g, ' ') === showName)
-          if (tourDate?.role_id) {
-            foundRole = guild.roles.cache.get(tourDate.role_id)
-            if (foundRole) break
+          if (tourDate) {
+            matchedTourKey = tour.key
+            matchedTourDate = tourDate
+            if (tourDate.role_id) {
+              foundRole = guild.roles.cache.get(tourDate.role_id)
+            }
+            break
           }
         }
         if (!foundRole) {
@@ -173,12 +180,27 @@ export async function executeTool(
         if (!foundRole) return JSON.stringify({ error: `Role not found for show: ${showName}` })
         const role = foundRole
 
-        const member = await guild.members.fetch(context.message.author.id)
+        const userId = context.message.author.id
+        const member = await guild.members.fetch(userId)
+        const attendanceApi = new AttendanceAPI()
+
         if (member.roles.cache.some(r => r.id === role.id)) {
           await member.roles.remove(role)
+          // Remove attendance record
+          const record = await attendanceApi.findRecord(userId, matchedTourDate?.role ?? showName)
+          if (record?.id) await attendanceApi._delete(record.id)
           return JSON.stringify({ success: true, message: `Removed ${role.name} role.`, action: 'removed' })
         } else {
           await member.roles.add(role)
+          // Create attendance record
+          await attendanceApi.create({
+            userId,
+            tourKey: matchedTourKey ?? '',
+            showRole: matchedTourDate?.role ?? showName,
+            showDate: matchedTourDate?.date ?? '',
+            showName: matchedTourDate?.name ?? showName,
+            attendedAt: new Date().toISOString(),
+          })
           return JSON.stringify({ success: true, message: `Added ${role.name} role.`, action: 'added' })
         }
       }
@@ -280,6 +302,21 @@ export async function executeTool(
         const updated = await toursApi.replace(tourKey, tour)
         if (!updated) return JSON.stringify({ error: 'Failed to update tour with new dates.' })
         return JSON.stringify({ success: true, message: `Added ${newDates.length} date(s) to '${tour.name}'. Discord roles created.`, tour: updated })
+      }
+
+      case 'show_attendees': {
+        const tourKey = toolInput.tour_key as string
+        const showRole = toolInput.show_role as string
+        const attendees = await new AttendanceAPI().byShow(tourKey, showRole)
+        if (!attendees.length) return JSON.stringify({ message: 'No attendees for this show yet.' })
+        return JSON.stringify(attendees)
+      }
+
+      case 'user_shows': {
+        const userId = toolInput.user_id as string
+        const shows = await new AttendanceAPI().byUser(userId)
+        if (!shows.length) return JSON.stringify({ message: 'This user has no show attendance records.' })
+        return JSON.stringify(shows)
       }
 
       case 'update_tour': {

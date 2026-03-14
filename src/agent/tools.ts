@@ -216,4 +216,38 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
       required: ['tour_key'],
     },
   },
+  {
+    name: 'show_attendees',
+    description:
+      'Get the list of users attending a specific show.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        tour_key: {
+          type: 'string',
+          description: 'The tour key',
+        },
+        show_role: {
+          type: 'string',
+          description: 'The show role name (e.g. "Toronto_2022")',
+        },
+      },
+      required: ['tour_key', 'show_role'],
+    },
+  },
+  {
+    name: 'user_shows',
+    description:
+      'Get the list of shows a user has attended or is planning to attend.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        user_id: {
+          type: 'string',
+          description: 'The Discord user ID to look up',
+        },
+      },
+      required: ['user_id'],
+    },
+  },
 ]
