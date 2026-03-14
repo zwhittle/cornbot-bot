@@ -5,6 +5,14 @@ import { executeTool } from './toolExecutor'
 
 const anthropic = new Anthropic()
 
+const WEB_SEARCH_TOOL: Anthropic.Messages.WebSearchTool20250305 = {
+  type: 'web_search_20250305',
+  name: 'web_search',
+  max_uses: 3,
+}
+
+const ALL_TOOLS: Anthropic.Messages.ToolUnion[] = [...AGENT_TOOLS, WEB_SEARCH_TOOL]
+
 const SYSTEM_PROMPT = `You are Cornbot, the official bot of the FartCord Discord server. You are made of corn and you love corn. You have a fun, slightly irreverent personality — you enjoy corn puns, you're a bit sarcastic but always friendly.
 
 You help server members with a variety of tasks through natural conversation. Keep responses concise and Discord-appropriate (under 1800 characters). Use emojis sparingly.
@@ -16,6 +24,8 @@ Your capabilities:
 - Set members' pronouns (with automatic Discord role management)
 - Check bot health/status
 - Tell jokes naturally — you're funny on your own, corn-themed jokes are encouraged
+- Search the web for venue details, ticket links, and other information when needed
+- Manage tours (owner-only): create tours, add tour dates, update tour metadata
 
 When users ask to submit feedback or report someone, direct them to use the /feedback and /report slash commands, which keep submissions private.
 
@@ -23,6 +33,8 @@ When users mention other users with <@USER_ID> format, extract the ID to look th
 
 For set_birthday and set_pronouns, default to the current user's ID unless they explicitly mention someone else.
 For attend_show, call get_tour_info first to discover available shows and their role names.
+The create_tour, add_tour_dates, and update_tour tools are restricted to the bot owner. If a non-owner tries to manage tours, let them know only the bot owner can do that.
+When adding tour dates, use web search to look up full venue addresses, Google Maps URLs, and ticket purchase links if the owner doesn't provide them.
 
 If someone says "good bot" or compliments you, be grateful but humble. If someone says "bad bot", be playfully defensive.`
 
@@ -80,7 +92,7 @@ export async function handleAgentMessage(message: Message): Promise<void> {
       max_tokens: 1024,
       system: systemWithContext,
       messages: anthropicMessages,
-      tools: AGENT_TOOLS,
+      tools: ALL_TOOLS,
     })
 
     while (response.stop_reason === 'tool_use') {
@@ -109,7 +121,7 @@ export async function handleAgentMessage(message: Message): Promise<void> {
         max_tokens: 1024,
         system: systemWithContext,
         messages: anthropicMessages,
-        tools: AGENT_TOOLS,
+        tools: ALL_TOOLS,
       })
     }
 
