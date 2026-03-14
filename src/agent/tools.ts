@@ -250,4 +250,19 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
       required: ['user_id'],
     },
   },
+  {
+    name: 'web_search',
+    description:
+      'Search the web for information. Useful for looking up venue details, ticket links, addresses, and other current information.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        query: {
+          type: 'string',
+          description: 'The search query',
+        },
+      },
+      required: ['query'],
+    },
+  },
 ]
