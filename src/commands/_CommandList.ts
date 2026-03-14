@@ -1,7 +1,9 @@
 import { Command } from '../interfaces/Command'
+import { feedback } from './feedback'
 import { report } from './report'
 
 export const CommandList: Command[] = [
+  feedback,
   report,
 ]
 
