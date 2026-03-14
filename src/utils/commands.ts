@@ -1,31 +1,8 @@
 import { Client, GuildChannel } from 'discord.js'
-import { EmbedBuilder, SlashCommandBuilder } from '@discordjs/builders'
+import { EmbedBuilder } from '@discordjs/builders'
 import { formattedTimestamp, CORN_ID } from './utils'
 import { Feedback } from '../interfaces/Feedback'
 import { UserReport } from 'src/interfaces/UserReport'
-import { tourData } from '../data/tourdata'
-
-export function addTourSubcommands(builder: SlashCommandBuilder) {
-  const activeTours = tourData.filter(tour => tour.active)
-  activeTours.forEach(tour => {
-    const choices = tour.dates.map(date => ({ name: date.name, value: date.role }))
-
-    builder.addSubcommand(subcommand =>
-      subcommand
-        .setName(tour.key)
-        .setDescription(tour.description)
-        .addStringOption(option =>
-          option
-            .setName('show')
-            .setDescription(tour.description)
-            .setRequired(true)
-            .setChoices(...choices)
-        )
-    )
-  })
-
-  return builder
-}
 
 export async function submitFeedback(feedback: Feedback, client: Client) {
   const guild = await client.guilds.fetch(feedback.guildId)
