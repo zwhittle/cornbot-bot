@@ -1,13 +1,35 @@
 import { Client, GuildChannel } from 'discord.js'
-import { EmbedBuilder } from '@discordjs/builders'
-import { formattedTimestamp } from './utils'
+import { EmbedBuilder, SlashCommandBuilder } from '@discordjs/builders'
+import { formattedTimestamp, CORN_ID } from './utils'
 import { Feedback } from '../interfaces/Feedback'
 import { UserReport } from 'src/interfaces/UserReport'
+import { tourData } from '../data/tourdata'
+
+export function addTourSubcommands(builder: SlashCommandBuilder) {
+  tourData.forEach(tour => {
+    const choices = tour.dates.map(date => ({ name: date.name, value: date.role }))
+
+    builder.addSubcommand(subcommand =>
+      subcommand
+        .setName(tour.key)
+        .setDescription(tour.description)
+        .addStringOption(option =>
+          option
+            .setName('show')
+            .setDescription(tour.description)
+            .setRequired(true)
+            .setChoices(...choices)
+        )
+    )
+  })
+
+  return builder
+}
 
 export async function submitFeedback(feedback: Feedback, client: Client) {
   const guild = await client.guilds.fetch(feedback.guildId)
   const channel = (await guild.channels.fetch(feedback.channelId)) as GuildChannel
-  const corn = await client.users.fetch('311688013857947658')
+  const corn = await client.users.fetch(CORN_ID)
 
   const cornbotFeedbackEmbed = new EmbedBuilder()
     .setColor(0xff0000)
@@ -30,14 +52,14 @@ export async function submitFeedback(feedback: Feedback, client: Client) {
 export async function submitReport(report: UserReport, client: Client) {
   const guild = await client.guilds.fetch(report.guildId)
   const channel = await guild.channels.fetch(report.channelId)
-  const corn = await client.users.fetch('311688013857947658')
+  const corn = await client.users.fetch(CORN_ID)
   const reportEmbed = new EmbedBuilder()
     .addFields(
       { name: 'Reported Member', value: `<@${report.reportedUserId}>`, inline: true },
       { name: 'Reason', value: report.reason, inline: true },
       { name: 'Reported By', value: `<@${report.reportedById}>`, inline: true },
       { name: 'Guild', value: guild.name, inline: true },
-      { name: 'Channel', value: channel.name, inline: true },
+      { name: 'Channel', value: channel?.name ?? 'Unknown', inline: true },
       { name: 'Timestamp', value: formattedTimestamp(), inline: true }
     )
     .setTimestamp()

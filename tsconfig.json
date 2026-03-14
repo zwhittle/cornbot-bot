@@ -2,6 +2,7 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
+    "strict": true /* Enable all strict type-checking options. */,
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "target": "es2018" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "module": "commonjs" /* Specify what module code is generated. */,

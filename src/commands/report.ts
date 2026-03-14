@@ -25,23 +25,28 @@ export const report: Command = {
           { name: 'Rule #3: No obscene or offensive content.', value: 'Rule #3' }
         )
     ),
-  run: async (interaction: ChatInputCommandInteraction) => {
-    const reportedMemberId = interaction.options.getUser('member').id
-    const reason = interaction.options.getString('reason')
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
+    const reportedMember = chatInteraction.options.getUser('member')
+    if (!reportedMember) {
+      await interaction.reply('Could not find the specified member.')
+      return
+    }
+    const reportedMemberId = reportedMember.id
+    const reason = chatInteraction.options.getString('reason') ?? ''
     const reportingMemberId = interaction.user.id
-    const guildId = interaction.guildId
+    const guildId = interaction.guildId ?? ''
     const channelId = interaction.channelId
 
-    new ReportsAPI()
-      .create({
-        reportedUserId: reportedMemberId,
-        reason: reason,
-        reportedById: reportingMemberId,
-        guildId: guildId,
-        channelId: channelId,
-        userSubmitted: true,
-      })
-      .then(newReport => submitReport(newReport, interaction.client))
-      .then(async newReport => await interaction.reply(`Your report has been submitted!`))
+    const newReport = await new ReportsAPI().create({
+      reportedUserId: reportedMemberId,
+      reason: reason,
+      reportedById: reportingMemberId,
+      guildId: guildId,
+      channelId: channelId,
+      userSubmitted: true,
+    })
+    await submitReport(newReport, interaction.client)
+    await interaction.reply(`Your report has been submitted!`)
   },
 }

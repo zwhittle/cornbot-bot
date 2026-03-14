@@ -20,22 +20,25 @@ export const birthday: Command = {
         )
         .setRequired(true)
     ),
-  run: async (interaction: ChatInputCommandInteraction) => {
-    const day = interaction.options.getInteger('day')
-    const month = interaction.options.getInteger('month')
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
+    const day = chatInteraction.options.getInteger('day')
+    const month = chatInteraction.options.getInteger('month')
+
+    if (day === null || month === null) {
+      await interaction.reply({ content: 'Day and month are required.' })
+      return
+    }
 
     const validDay = day >= 1 && day <= 31
     const validMonth = month >= 1 && month <= 12
 
     if (validDay && validMonth) {
-      new MembersAPI()
-        .update(interaction.user.id, { birthdayMonth: month, birthdayDay: day })
-        .then(async member => {
-          await interaction.reply({
-            content: `Your birthday has been saved! You can view your Fartcord profile by using the \`/info member\` command or right-clicking yourself and clicking on \`Apps > Member Info\`.`,
-            ephemeral: true,
-          })
-        })
+      await new MembersAPI().update(interaction.user.id, { birthdayMonth: month, birthdayDay: day })
+      await interaction.reply({
+        content: `Your birthday has been saved! You can view your Fartcord profile by using the \`/info member\` command or right-clicking yourself and clicking on \`Apps > Member Info\`.`,
+        ephemeral: true,
+      })
     } else {
       await interaction.reply({
         content: `Yeah, no. That's not a real date. Try again.`,

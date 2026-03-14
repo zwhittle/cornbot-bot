@@ -21,32 +21,33 @@ export const ready = async (BOT: Client) => {
   console.log('Syncing Guilds...')
   guildsApi.sync(connectedGuilds)
 
-  connectedGuilds.map(async connGuild => {
-    await connGuild.members.fetch().then(members => {
-      console.log(`Syncing ${connGuild.name} Members...`)
-      membersApi.sync(members)
-    })
-  })
+  await Promise.all(connectedGuilds.map(async connGuild => {
+    const members = await connGuild.members.fetch()
+    console.log(`Syncing ${connGuild.name} Members...`)
+    await membersApi.sync(members)
+  }))
 
   const dailyBirthdayCheck = new CronJob('00 00 08 * * *', async () => {
-    // This should run every day at 07:00:00
+    // This should run every day at 08:00:00 UTC
     const birthdayMembers = await membersApi.todaysBirthdays()
-    let guildsWithBirthday = []
-    birthdayMembers.map(member => {
-      if (guildsWithBirthday.filter(element => element.id == member.guildId).length == 0) {
+    const guildsWithBirthday: string[] = []
+    birthdayMembers.forEach(member => {
+      if (!guildsWithBirthday.includes(member.guildId)) {
         guildsWithBirthday.push(member.guildId)
       }
     })
 
-    guildsWithBirthday.map(async guildId => {
+    await Promise.all(guildsWithBirthday.map(async guildId => {
       const guildBirthdayMembers = birthdayMembers.filter(member => member.guildId === guildId)
       if (guildBirthdayMembers.length >= 1) {
         const guild = await BOT.guilds.fetch(guildId)
-        const birthdayMembersString = birthdayMembers.map(member => `<@${member.id}>`).join(', ')
+        const birthdayMembersString = guildBirthdayMembers.map(member => `<@${member.id}>`).join(', ')
         const output = `Happy Birthday to ${birthdayMembersString}!`
-        guild.systemChannel.send(output)
+        if (guild.systemChannel) {
+          guild.systemChannel.send(output)
+        }
       }
-    })
+    }))
   })
 
   dailyBirthdayCheck.start() // start

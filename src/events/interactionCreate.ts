@@ -11,9 +11,9 @@ export async function interactionCreate(interaction: Interaction) {
             .create({
               type: 'command',
               event: interaction.commandName,
-              guildId: interaction.guild.id,
+              guildId: interaction.guild?.id,
               channelId: interaction.channel?.id,
-              memberId: interaction.member.user.id,
+              memberId: interaction.member?.user?.id,
             })
             .then(() => console.log(`Event logged`))
         })

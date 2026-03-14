@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { GuildMember } from 'discord.js'
 
 export const CORN_ID = '311688013857947658'
+export const CORNSERV_ID = '322203935786008586'
 
 export const months = {
   1: 'January',
@@ -61,9 +62,8 @@ export function goodBotResponse() {
 
 export function badBotResponse() {
   const responses: string[] = []
-  String.raw`¯\_(ツ)_/`
 
-  responses.push(`Sorry. I'm kinda drubk right now.`)
+  responses.push(`Sorry. I'm kinda drunk right now.`)
   responses.push(`No need to get aggressive. I\'m just a bot made of corn.`)
   responses.push(`Bad human`)
   responses.push(`t(-_-t)`)

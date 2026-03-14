@@ -26,8 +26,9 @@ export const joke: Command = {
         .setDescription('Filter out explicit or offensive jokes (optional)')
         .setRequired(false)
     ),
-  run: async (interaction: ChatInputCommandInteraction) => {
-    const category = interaction.options.getString('category') as JokeCategory
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
+    const category = chatInteraction.options.getString('category') as JokeCategory | null
     const safeBlacklist: JokeBLFlag[] = [
       'explicit',
       'nsfw',
@@ -36,7 +37,7 @@ export const joke: Command = {
       'religious',
       'sexist',
     ]
-    const safesearch = interaction.options.getBoolean('safesearch')
+    const safesearch = chatInteraction.options.getBoolean('safesearch')
     const blacklist = safesearch ? safeBlacklist : undefined
     let joke: Joke
     if (category) joke = await fetchJoke([category], blacklist)

@@ -3,7 +3,7 @@ import { Guild as DiscordGuild } from 'discord.js'
 export class Guild {
   id: string
   name: string
-  description: string
+  description: string | null
   joinedAt: Date
   discordCreatedAt: Date
   memberCount: number
@@ -15,14 +15,14 @@ export class Guild {
   constructor(
     id: string,
     name: string,
-    description: string,
+    description: string | null,
     joinedAt: Date,
     discordCreatedAt: Date,
     memberCount: number,
     cornScore: number,
     goodBotCount: number,
     badBotCount: number,
-    icon: string
+    icon: string | null
   ) {
     this.id = id
     this.name = name
@@ -33,10 +33,10 @@ export class Guild {
     this.cornScore = cornScore
     this.goodBotCount = goodBotCount
     this.badBotCount = badBotCount
-    this.icon = icon
+    this.icon = icon ?? ''
   }
 
-  static fromDiscord(guildData: DiscordGuild) {
+  static fromDiscord(guildData: DiscordGuild): Guild {
     return new this(
       guildData.id,
       guildData.name,

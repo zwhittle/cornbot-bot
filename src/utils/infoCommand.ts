@@ -7,7 +7,7 @@ import { Guild } from '../interfaces/Guild'
 export async function memberInfo(interaction: CommandInteraction, member: Member) {
   let birthday = 'None saved'
   if (member.birthdayMonth && member.birthdayDay) {
-    birthday = `${member.birthdayDay} ${months[member.birthdayMonth]}`
+    birthday = `${member.birthdayDay} ${(months as Record<number, string>)[member.birthdayMonth]}`
   } 
 
   const embed = new EmbedBuilder()
@@ -17,7 +17,7 @@ export async function memberInfo(interaction: CommandInteraction, member: Member
     .addFields(
       { name: 'Pronouns', value: member.pronouns },
       { name: 'Birthday', value: birthday },
-      { name: 'Join Date', value: formatDateLong(new Date(member.joinedAt)) }
+      { name: 'Join Date', value: member.joinedAt ? formatDateLong(new Date(member.joinedAt)) : 'Unknown' }
     )
     .setTimestamp()
 

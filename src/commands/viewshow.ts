@@ -1,9 +1,11 @@
 import("dotenv/config")
-import { SlashCommandBuilder, EmbedBuilder } from '@discordjs/builders'
+import { EmbedBuilder } from '@discordjs/builders'
+import { SlashCommandBuilder } from '@discordjs/builders'
 import { Command } from '../interfaces/Command'
 import { tourData } from '../data/tourdata'
 import { ChatInputCommandInteraction } from 'discord.js'
 import { formatDateLong } from '../utils/utils'
+import { addTourSubcommands } from '../utils/commands'
 import { parseISO } from 'date-fns'
 
 const STATIC_URL = process.env.STATIC_URL as string
@@ -13,49 +15,42 @@ const command = () => {
     .setName('viewshow')
     .setDescription('See attendees for a PTH tour date')
 
-  tourData.map(tour => {
-    let choices = []
-    tour.dates.map(date =>
-      choices.push({
-        name: date.name,
-        value: date.role,
-      })
-    )
-
-    slashCommandBuilder.addSubcommand(subcommand =>
-      subcommand
-        .setName(tour.key)
-        .setDescription(tour.description)
-        .addStringOption(option =>
-          option
-            .setName('show')
-            .setDescription(tour.description)
-            .setRequired(true)
-            .setChoices(...choices)
-        )
-    )
-  })
-
-  return slashCommandBuilder
+  return addTourSubcommands(slashCommandBuilder)
 }
 
 export const viewShow: Command = {
   data: command(),
-  run: async (interaction: ChatInputCommandInteraction) => {
-    const tourInput = interaction.options.getSubcommand()
-    const showInputRaw = interaction.options.getString('show')
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
+    const tourInput = chatInteraction.options.getSubcommand()
+    const showInputRaw = chatInteraction.options.getString('show')
+    if (!showInputRaw) return
     const showInput = showInputRaw.replace(/_/g, ' ')
 
     const tour = tourData.find(tour => tour.key === tourInput)
+    if (!tour) {
+      await interaction.reply({ content: 'Tour not found.', ephemeral: true })
+      return
+    }
     const show = tour.dates.find(date => date.role === showInputRaw)
+    if (!show) {
+      await interaction.reply({ content: 'Show not found.', ephemeral: true })
+      return
+    }
 
     const guild = interaction.guild
+    if (!guild) {
+      await interaction.reply({ content: 'This command can only be used in a server.', ephemeral: true })
+      return
+    }
     const role = guild.roles.cache.find(r => r.name === showInput)
     let attendeesString = ''
-    
+
     try {
-      const attendees = role.members
-      attendees.map(a => (attendeesString += `<@${a.id}>\n`))
+      if (role) {
+        const attendees = role.members
+        attendees.forEach(a => (attendeesString += `<@${a.id}>\n`))
+      }
     } catch (error) {
       console.log("Failed fetching role members.")
 
