@@ -34,7 +34,7 @@ export const tourData: Tour[] = [
     key: 'canada2022',
     name: 'Canada Summer 2022',
     description: 'The Band tours Canada in Summer 2022',
-    poster: './static/tour_canada_2022.jpeg',
+    poster: 'tour_canada_2022.jpeg',
     dates: [
       {
         name: 'Ottawa, ON',
@@ -78,7 +78,7 @@ export const tourData: Tour[] = [
     key: 'seachangefest2022',
     name: 'Sea Change Super Friendly Fest 2022',
     description: 'The Band headlines Sea Change Super Friendly Fest 2022',
-    poster: './static/tour_seachange_2022.jpeg',
+    poster: 'tour_seachange_2022.jpeg',
     dates: [
       {
         name: 'Edmonton, AB',
@@ -92,7 +92,7 @@ export const tourData: Tour[] = [
     key: 'australia2023',
     name: 'Australia 2023',
     description: 'The Band joins Plini across Australia in February 2023',
-    poster: './static/tour_australia_2023.jpeg',
+    poster: 'tour_australia_2023.jpeg',
     dates: [
       { name: 'Sydney', date: '2023-01-28', venue: { name: 'Metro Theatre' }, role: 'Sydney_2023' },
       {
@@ -127,7 +127,7 @@ export const tourData: Tour[] = [
     key: 'ontario2023',
     name: 'Ontario 2023',
     description: 'The Band embarks on Ontario Spring Tour 2023',
-    poster: './static/tour_ontario_2023.png',
+    poster: 'tour_ontario_2023.png',
     dates: [
       {
         name: 'London, ON',
@@ -183,7 +183,7 @@ export const tourData: Tour[] = [
     key: 'halloween2023',
     name: 'Halloween is For Always',
     description: 'The Band takes a Halloween costume party on tour across North America',
-    poster: './static/tour_halloween_2023.jpg',
+    poster: 'tour_halloween_2023.jpeg',
     dates: [
       {
         name: 'Ferndale, MI',
@@ -649,4 +649,895 @@ export const tourData: Tour[] = [
       },
     ],
   },
+  {
+    key: 'spring2024',
+    name: 'Ontario Tour Spring 2024',
+    description: 'The Bands goes on a quick tour of Ontario in Spring 2024',
+    poster: 'tour_spring_2024.jpeg',
+    dates: [
+      {
+        name: 'Tillsonburg, ON',
+        date: '2024-05-23',
+        venue: { name: 'The Mill' },
+        role: 'Tillsonburg_2024',
+      },
+      {
+        name: 'Waterloo, ON',
+        date: '2024-05-24',
+        venue: { name: "Maxwell's" },
+        role: 'Waterloo_2024',
+      },
+      {
+        name: 'St. Catharines, ON',
+        date: '2024-05-25',
+        venue: { name: "No Man's Land" },
+        role: 'St_Catharines_2024',
+      },
+      {
+        name: 'Oshawa, ON',
+        date: '2024-05-30',
+        venue: { name: 'Bondst Event Centre' },
+        role: 'Oshawa_2024',
+      },
+      {
+        name: 'Ottawa, ON',
+        date: '2024-05-31',
+        venue: { name: 'Bronson Centre' },
+        role: 'Ottawa_2024',
+      },
+      {
+        name: 'Kingston, ON',
+        date: '2024-06-01',
+        venue: { name: 'The Ale House' },
+        role: 'Kingston_2024',
+      },
+    ],
+  },
+  {
+    key: 'volition2024',
+    name: 'Volition X',
+    description: 'The Band tours North America to celebrate the 10th anniversary of Volition',
+    poster: 'tour_volitionx_2024.jpeg',
+    dates: [
+      {
+        name: 'Detroit, MI',
+        date: '2024-08-01',
+        time: '18:30:00-05:00',
+        venue: {
+          name: "Saint Andrew's Hall",
+          address: {
+            street: '431 E Congress St',
+            city: 'Detroit',
+            state_province: 'MI',
+            country: 'US',
+            postal: '48226',
+          },
+          maps_url: 'https://maps.app.goo.gl/cH93dwMkbpkA1wrj7',
+        },
+        role: 'Detroit_2024',
+        ticket_url:
+          'https://concerts.livenation.com/protest-the-hero-detroit-michigan-08-01-2024/event/080060A8DF9548E0',
+      },
+      {
+        name: 'Milwaukee, WI',
+        date: '2024-08-02',
+        time: '19:00:00-05:00',
+        venue: {
+          name: 'X-Ray Arcade',
+          address: {
+            street: '5036 S Packard Ave',
+            city: 'Cudahy',
+            state_province: 'WI',
+            country: 'US',
+            postal: '53110',
+          },
+          maps_url: 'https://maps.app.goo.gl/UYqQdMUAsargToB36',
+        },
+        role: 'Milwaukee_2024',
+        ticket_url:
+          'https://wl.seetickets.us/event/protest-the-hero/606676?afflky=KickstandProductions',
+      },
+      {
+        name: 'Minneapolis, MN',
+        date: '2024-08-03',
+        time: '20:00:00-05:00',
+        venue: {
+          name: 'Fine Line',
+          address: {
+            street: '318 1st Ave N',
+            city: 'Minneapolis',
+            state_province: 'MN',
+            country: 'US',
+            postal: '55401',
+          },
+          maps_url: 'https://maps.app.goo.gl/ahFnhVkZJsnaxZEZ9',
+        },
+        role: 'Minneapolis_2024',
+        ticket_url: 'https://www.axs.com/events/573442/protest-the-hero-tickets?skin=fineline',
+      },
+      {
+        name: 'Seattle, WA',
+        date: '2024-08-06',
+        time: '20:00:00-07:00',
+        venue: {
+          name: 'The Crocodile',
+          address: {
+            street: '2505 1st Ave',
+            city: 'Seattle',
+            state_province: 'WA',
+            country: 'US',
+            postal: '98121',
+          },
+          maps_url: 'https://maps.app.goo.gl/6zRA4ESjB6YPefxBA',
+        },
+        role: 'Seattle_2024',
+        ticket_url:
+          'https://www.ticketweb.com/event/protest-the-hero-10-year-the-crocodile-tickets/13514824?pl=crocodile',
+      },
+      {
+        name: 'Sacramento, CA',
+        date: '2024-08-08',
+        time: '19:00:00-07:00',
+        venue: {
+          name: 'Goldfield - Roseville',
+          address: {
+            street: '238 Vernon St',
+            city: 'Roseville',
+            state_province: 'CA',
+            country: 'US',
+            postal: '95678',
+          },
+          maps_url: 'https://maps.app.goo.gl/NGHMzqirecZyQ8At9',
+        },
+        role: 'Sacramento_2024',
+        ticket_url:
+          'https://wl.seetickets.us/event/protest-the-hero/603198?afflky=GoldfieldTradingPost',
+      },
+      {
+        name: 'San Francisco, CA',
+        date: '2024-08-09',
+        time: '20:00:00-07:00',
+        venue: {
+          name: 'Neck of the Woods',
+          address: {
+            street: '406 Clement St',
+            city: 'San Francisco',
+            state_province: 'CA',
+            country: 'US',
+            postal: '94118',
+          },
+          maps_url: 'https://maps.app.goo.gl/fCeXvvfLhBJyshYf8',
+        },
+        role: 'San_Francisco_2024',
+        ticket_url:
+          'https://www.ticketweb.com/event/protest-the-hero-68-greyhaven-neck-of-the-woods-tickets/13568064',
+      },
+      {
+        name: 'San Diego, CA',
+        date: '2024-08-10',
+        time: '20:00:00-07:00',
+        venue: {
+          name: 'SOMA Sidestage',
+          address: {
+            street: '3350 Sports Arena Blvd',
+            city: 'San Diego',
+            state_province: 'CA',
+            country: 'US',
+            postal: '92110',
+          },
+          maps_url: 'https://maps.app.goo.gl/dSfqyd2YQhsdee1v9',
+        },
+        role: 'San_Diego_2024',
+        ticket_url:
+          'https://www.ticketweb.com/event/protest-the-hero-soma-sidestage-tickets/13496724?pl=soma',
+      },
+      {
+        name: 'Los Angeles, CA',
+        date: '2024-08-11',
+        time: '18:00:00-07:00',
+        venue: {
+          name: '1720',
+          address: {
+            street: '1720 E 16th St',
+            city: 'Los Angeles',
+            state_province: 'CA',
+            country: 'US',
+            postal: '90021',
+          },
+          maps_url: 'https://maps.app.goo.gl/PJmJuYoPZ5HDWYs6A',
+        },
+        role: 'Los_Angeles_2024',
+        ticket_url:
+          'https://dice.fm/event/mxb79l-protest-the-hero-11th-aug-1720-los-angeles-tickets',
+      },
+      {
+        name: 'Denver, CO',
+        date: '2024-08-14',
+        time: '20:00:00-06:00',
+        venue: {
+          name: 'Gothic Theatre',
+          address: {
+            street: '3263 S Broadway',
+            city: 'Englewood',
+            state_province: 'CO',
+            country: 'US',
+            postal: '80113',
+          },
+          maps_url: 'https://maps.app.goo.gl/V8ic5tBBJEsXzikNA',
+        },
+        role: 'Denver_2024',
+        ticket_url: 'https://www.axs.com/events/569752/protest-the-hero-tickets',
+      },
+      {
+        name: 'Chicago, IL',
+        date: '2024-08-16',
+        time: '19:00:00-05:00',
+        venue: {
+          name: 'Concord Music Hall',
+          address: {
+            street: '2047 N Milwaukee Ave',
+            city: 'Chicago',
+            state_province: 'IL',
+            country: 'US',
+            postal: '60647',
+          },
+          maps_url: 'https://maps.app.goo.gl/J5DkpngtPF7MpRLa6',
+        },
+        role: 'Chicago_2024',
+        ticket_url: 'https://www.axs.com/events/582387/protest-the-hero-tickets',
+      },
+      {
+        name: 'Columbus, OH',
+        date: '2024-08-17',
+        time: '20:00:00-05:00',
+        venue: {
+          name: 'A&R Music Bar',
+          address: {
+            street: '391 Neil Ave',
+            city: 'Columbus',
+            state_province: 'OH',
+            country: 'US',
+            postal: '43215',
+          },
+          maps_url: 'https://maps.app.goo.gl/ANNGezaNhrpqaGaM9',
+        },
+        role: 'Columbus_2024',
+        ticket_url: 'https://www.axs.com/events/580570/protest-the-hero-tickets',
+      },
+      {
+        name: 'Cleveland, OH',
+        date: '2024-08-18',
+        time: '20:00:00-05:00',
+        venue: {
+          name: 'Grog Shop',
+          address: {
+            street: '2785 Euclid Heights Blvd',
+            city: 'Cleveland',
+            state_province: 'OH',
+            country: 'US',
+            postal: '44106',
+          },
+          maps_url: 'https://maps.app.goo.gl/rPgJNixSiuGDmLcaA',
+        },
+        role: 'Cleveland_2024',
+        ticket_url:
+          'https://www.ticketweb.com/event/protest-the-hero-10th-anniversary-grog-shop-tickets/13555064?pl=grogshop',
+      },
+      {
+        name: "St. John's, NL",
+        date: '2024-08-20',
+        time: '20:00:00-02:30',
+        venue: {
+          name: 'The Rock House',
+          address: {
+            street: '7 George St',
+            city: "St. John's",
+            state_province: 'NL',
+            country: 'CA',
+            postal: 'A1C 1M7',
+          },
+          maps_url: 'https://maps.app.goo.gl/1GuxWU8RmSx4hXGH6',
+        },
+        role: 'St_Johns_2024',
+        ticket_url: 'https://www.tixr.com/groups/tickettide/events/protest-the-hero-107705',
+      },
+      {
+        name: 'Buffalo, NY',
+        date: '2024-10-11',
+        time: '18:30:00-04:00',
+        venue: {
+          name: 'Rec Room',
+          address: {
+            street: '79 W Chippewa St',
+            city: 'Buffalo',
+            state_province: 'NY',
+            country: 'US',
+            postal: '14202',
+          },
+          maps_url: 'https://maps.app.goo.gl/o5ukz656auWNroHS6',
+        },
+        role: 'Buffalo_2024',
+        ticket_url: 'https://www.ticketweb.com/event/protest-the-hero-rec-room-tickets/13568684',
+      },
+      {
+        name: 'Louisville, KY',
+        date: '2024-10-12',
+        time: '20:00:00-04:00',
+        venue: {
+          name: 'Mercury Ballroom',
+          address: {
+            street: '611 S 4th St',
+            city: 'Louisville',
+            state_province: 'KY',
+            country: 'US',
+            postal: '40202',
+          },
+          maps_url: 'https://maps.app.goo.gl/dFkXRD2Jf64UvTmZ7',
+        },
+        role: 'Louisville_2024',
+        ticket_url:
+          'https://concerts.livenation.com/protest-the-hero-volition-x-tour-louisville-kentucky-10-12-2024/event/160060C3DA0133F0',
+      },
+      {
+        name: 'Nashville, TN',
+        date: '2024-10-13',
+        time: '20:00:00-05:00',
+        venue: {
+          name: 'The Basement East',
+          address: {
+            street: '917 Woodland St',
+            city: 'Nashville',
+            state_province: 'TN',
+            country: 'US',
+            postal: '37206',
+          },
+          maps_url: 'https://maps.app.goo.gl/EMyTUVhMMrjXv5B6A',
+        },
+        role: 'Nashville_2024',
+        ticket_url:
+          'https://www.ticketweb.com/event/protest-the-hero-w-68-the-basement-east-tickets/13550564?pl=basementeast',
+      },
+      {
+        name: 'Atlanta, GA',
+        date: '2024-10-15',
+        time: '19:00:00-04:00',
+        venue: {
+          name: 'The Masquerade',
+          address: {
+            street: '75 Martin Luther King Jr Dr SW',
+            city: 'Atlanta',
+            state_province: 'GA',
+            country: 'US',
+            postal: '30303',
+          },
+          maps_url: 'https://goo.gl/maps/mD3EaVUfteux1tcE7',
+        },
+        role: 'Atlanta_2024',
+        ticket_url: 'https://www.ticketmaster.com/event/0E0060B4D4136AD8',
+      },
+      {
+        name: 'Charlotte, NC',
+        date: '2024-10-16',
+        time: '20:00:00-04:00',
+        venue: {
+          name: "Amos' Southend",
+          address: {
+            street: '1423 S Tryon St',
+            city: 'Charlotte',
+            state_province: 'NC',
+            country: 'US',
+            postal: '28203',
+          },
+          maps_url: 'https://maps.app.goo.gl/DEJviWHKWE5M77gMA',
+        },
+        role: 'Charlotte_2024',
+        ticket_url:
+          'https://www.etix.com/ticket/p/51017318/protest-the-hero-charlotte-amossouthend',
+      },
+      {
+        name: 'Balitmore, MD',
+        date: '2024-10-18',
+        time: '20:00:00-04:00',
+        venue: {
+          name: 'Baltimore Soundstage',
+          address: {
+            street: '124 Market Pl',
+            city: 'Baltimore',
+            state_province: 'MD',
+            country: 'US',
+            postal: '21202',
+          },
+          maps_url: 'https://maps.app.goo.gl/n6BFdhgekvHdXLxy6',
+        },
+        role: 'Baltimore_2024',
+        ticket_url: 'https://www.ticketmaster.com/event/150060AED3BE496C',
+      },
+      {
+        name: 'Philadelphia, PA',
+        date: '2024-10-19',
+        time: '20:00:00-04:00',
+        venue: {
+          name: 'Underground Arts',
+          address: {
+            street: '1200 Callowhill St',
+            city: 'Philadelphia',
+            state_province: 'PA',
+            country: 'US',
+            postal: '19123',
+          },
+          maps_url: 'https://maps.app.goo.gl/XiyzCyYoZWW2KteA6',
+        },
+        role: 'Philadelphia_2024',
+        ticket_url:
+          'https://dice.fm/event/oe2glg-protest-the-hero-19th-oct-underground-arts-philadelphia-tickets',
+      },
+      {
+        name: 'Brooklyn, NY',
+        date: '2024-10-20',
+        time: '18:00:00-04:00',
+        venue: {
+          name: 'Warsaw',
+          address: {
+            street: '261 Driggs Ave',
+            city: 'Brooklyn',
+            state_province: 'NY',
+            country: 'US',
+            postal: '11222',
+          },
+          maps_url: 'https://maps.app.goo.gl/ZqsrxfsgVG1Pd1RA8',
+        },
+        role: 'Brooklyn_2024',
+        ticket_url:
+          'https://concerts.livenation.com/protest-the-hero-10th-anniversary-of-brooklyn-new-york-10-20-2024/event/000060BED4288AAF',
+      },
+      {
+        name: 'Cambridge, MA',
+        date: '2024-10-22',
+        time: '20:30:00-04:00',
+        venue: {
+          name: 'The Sinclair',
+          address: {
+            street: '52 Church St',
+            city: 'Cambridge',
+            state_province: 'MA',
+            country: 'US',
+            postal: '02138',
+          },
+          maps_url: 'https://maps.app.goo.gl/A1rKRVenjjHgRert9',
+        },
+        role: 'Cambridge_2024',
+        ticket_url: 'https://www.axs.com/events/564307/protest-the-hero-tickets?skin=sinclair',
+      },
+      {
+        name: 'Montreal, QC',
+        date: '2024-10-23',
+        time: '19:00:00-04:00',
+        venue: {
+          name: 'Théâtre Beanfield ',
+          address: {
+            street: '2490 Notre-Dame St W',
+            city: 'Montreal',
+            state_province: 'QC',
+            country: 'CA',
+            postal: 'H3J 1N5',
+          },
+          maps_url: 'https://maps.app.goo.gl/edgH5v2Ee8Afsb9c6',
+        },
+        role: 'Montreal_2024',
+        ticket_url: 'https://www.ticketmaster.ca/event/310060C3BD162F26?lang=en-ca&brand=evenko',
+      },
+      {
+        name: 'Toronto, ON',
+        date: '2024-10-24',
+        time: '18:30:00-04:00',
+        venue: {
+          name: 'HISTORY',
+          address: {
+            street: '1663 Queen St E',
+            city: 'Toronto',
+            state_province: 'ON',
+            country: 'CA',
+            postal: 'M4L 1G5',
+          },
+          maps_url: 'https://goo.gl/maps/SosfMREeudfRsCjg9',
+        },
+        role: 'Toronto_2024',
+        ticket_url: 'https://www.ticketmaster.ca/event/100060BEEC3A46A8',
+      },
+      {
+        name: 'London 2024',
+        date: '2024-10-25',
+        time: '19:00:00-04:00',
+        venue: {
+          name: 'London Music Hall',
+          address: {
+            street: '185 Queens Ave',
+            city: 'London',
+            state_province: 'ON',
+            country: 'CA',
+            postal: 'N6A 1G7',
+          },
+          maps_url: 'https://maps.app.goo.gl/iCwPsrLrj5MxPs7c9',
+        },
+        role: 'London_2024',
+        ticket_url: 'https://www.ticketmaster.ca/event/100060B7D49936D0',
+      },
+    ],
+  },
+  {
+    key: 'comacliptic2025',
+    name: 'BTBAM Comalaska Tour',
+    description: 'The Band tours North America supporting Between the Buried and Me',
+    poster: 'tour_comalaska_2025.jpeg',
+    dates: [
+      {
+        "name": "Tillsonburg, ON (Night One)",
+        "date": "2025-04-26",
+        "role": "Tillsonburg_Night_One_2025",
+        "venue": {
+          "name": "The Mill",
+          "address": {
+            "street": "20 John Pound Rd",
+            "city": "Tillsonburg",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "N4G 0B9"
+          },
+          "maps_url": "https://maps.app.goo.gl/Jio2swrDcmcUToGt7"
+        }
+      },
+      {
+        "name": "Tillsonburg, ON (Night Two)",
+        "date": "2025-04-27",
+        "role": "Tillsonburg_Night_Two_2025",
+        "venue": {
+          "name": "The Mill",
+          "address": {
+            "street": "20 John Pound Rd",
+            "city": "Tillsonburg",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "N4G 0B9"
+          },
+          "maps_url": "https://maps.app.goo.gl/Jio2swrDcmcUToGt7"
+        }
+      },
+      {
+        "name": "Baltimore, MD",
+        "date": "2025-04-29",
+        "role": "Baltimore_2025",
+        "venue": {
+          "name": "Soundstage",
+          "address": {
+            "street": "124 Market Place",
+            "city": "Baltimore",
+            "state_province": "MD",
+            "country": "US",
+            "postal": "21202"
+          },
+          "maps_url": "https://maps.app.goo.gl/YHNZ8FPtJ6zzXmCQA"
+        }
+      },
+      {
+        "name": "Cleveland, OH",
+        "date": "2025-04-30",
+        "role": "Cleveland_2025",
+        "venue": {
+          "name": "House of Blues",
+          "address": {
+            "street": "308 Euclid Ave",
+            "city": "Cleveland",
+            "state_province": "OH",
+            "country": "US",
+            "postal": "44114"
+          },
+          "maps_url": "https://maps.app.goo.gl/8zZuLVieg7sZjWd67"
+        }
+      },
+      {
+        "name": "Grand Rapids, MI",
+        "date": "2025-05-01",
+        "role": "Grand_Rapids_2025",
+        "venue": {
+          "name": "Elevation",
+          "address": {
+            "street": "133 Cesar E. Chavez Ave SW",
+            "city": "Grand Rapids",
+            "state_province": "MI",
+            "country": "US",
+            "postal": "49503"
+          },
+          "maps_url": "https://maps.app.goo.gl/zfGYK1PXiaaU1shLA"
+        }
+      },
+      {
+        "name": "Lawrence, KS",
+        "date": "2025-05-02",
+        "role": "Lawrence_2025",
+        "venue": {
+          "name": "The Granada",
+          "address": {
+            "street": "1020 Massachusetts St",
+            "city": "Lawrence",
+            "state_province": "KS",
+            "country": "US",
+            "postal": "66044"
+          },
+          "maps_url": "https://maps.app.goo.gl/GuGgiHt8hHmziULY7"
+        }
+      },
+      {
+        "name": "Omaha, NE",
+        "date": "2025-05-03",
+        "role": "Omaha_2025",
+        "venue": {
+          "name": "The Waiting Room",
+          "address": {
+            "street": "6212 Maple St",
+            "city": "Omaha",
+            "state_province": "NE",
+            "country": "US",
+            "postal": "68104"
+          },
+          "maps_url": "https://maps.app.goo.gl/iHMTnFr4D3A3qFxG7"
+        }
+      },
+      {
+        "name": "Albuquerque, NM",
+        "date": "2025-05-04",
+        "role": "Albuquerque_2025",
+        "venue": {
+          "name": "Sunshine Theater",
+          "address": {
+            "street": "120 Central Ave SW",
+            "city": "Albuquerque",
+            "state_province": "NM",
+            "country": "US",
+            "postal": "87102"
+          },
+          "maps_url": "https://maps.app.goo.gl/fVeZmwsmtQwBLxkS7"
+        }
+      },
+      {
+        "name": "Tucson, AZ",
+        "date": "2025-05-05",
+        "role": "Tucson_2025",
+        "venue": {
+          "name": "Rialto Theatre",
+          "address": {
+            "street": "318 E Congress St",
+            "city": "Tucson",
+            "state_province": "AZ",
+            "country": "US",
+            "postal": "85701"
+          },
+          "maps_url": "https://maps.app.goo.gl/YsiBfQkgBLkemQJP7"
+        }
+      },
+      {
+        "name": "Los Angeles, CA",
+        "date": "2025-05-07",
+        "role": "Los_Angeles_2025",
+        "venue": {
+          "name": "The Belasco",
+          "address": {
+            "street": "1050 S Hill St",
+            "city": "Los Angeles",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "90015"
+          },
+          "maps_url": "https://maps.app.goo.gl/u7Dpmq6y46oRxwdo6"
+        }
+      },
+      {
+        "name": "San Diego, CA",
+        "date": "2025-05-08",
+        "role": "San_Diego_2025",
+        "venue": {
+          "name": "Observatory North Park",
+          "address": {
+            "street": "2891 University Ave",
+            "city": "San Diego",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "92104"
+          },
+          "maps_url": "https://maps.app.goo.gl/LNPvejpHNQXGgoNAA"
+        }
+      },
+      {
+        "name": "Sacramento, CA",
+        "date": "2025-05-09",
+        "role": "Sacramento_2025",
+        "venue": {
+          "name": "Ace of Spades",
+          "address": {
+            "street": "1417 R St",
+            "city": "Sacramento",
+            "state_province": "CA",
+            "country": "US",
+            "postal": "95811"
+          },
+          "maps_url": "https://maps.app.goo.gl/sfVNWPfoQUNdqFug7"
+        }
+      },
+      {
+        "name": "Salt Lake City, UT",
+        "date": "2025-05-11",
+        "role": "Salt_Lake_City_2025",
+        "venue": {
+          "name": "The Grand @ The Complex",
+          "address": {
+            "street": "537 W 100 S",
+            "city": "Salt Lake City",
+            "state_province": "UT",
+            "country": "US",
+            "postal": "84101"
+          },
+          "maps_url": "https://maps.app.goo.gl/3zHbz7NNiSJxZTUb8"
+        }
+      },
+      {
+        "name": "Colorado Springs, CO",
+        "date": "2025-05-13",
+        "role": "Colorado_Springs_2025",
+        "venue": {
+          "name": "Black Sheep",
+          "address": {
+            "street": "2106 E Platte Ave",
+            "city": "Colorado Springs",
+            "state_province": "CO",
+            "country": "US",
+            "postal": "80909"
+          },
+          "maps_url": "https://maps.app.goo.gl/robyZJAEi9DgMCaX7"
+        }
+      },
+      {
+        "name": "Tulsa, OK",
+        "date": "2025-05-15",
+        "role": "Tulsa_2025",
+        "venue": {
+          "name": "Vanguard",
+          "address": {
+            "street": "222 N Main St",
+            "city": "Tulsa",
+            "state_province": "OK",
+            "country": "US",
+            "postal": "74103"
+          },
+          "maps_url": "https://maps.app.goo.gl/WR28VdTpY6EKQo676"
+        }
+      },
+      {
+        "name": "St. Louis, MO",
+        "date": "2025-05-16",
+        "role": "St_Louis_2025",
+        "venue": {
+          "name": "Delmar Hall",
+          "address": {
+            "street": "6133 Delmar Blvd",
+            "city": "St. Louis",
+            "state_province": "MO",
+            "country": "US",
+            "postal": "63112"
+          },
+          "maps_url": "https://maps.app.goo.gl/8iHg1N7cgiepwVR56"
+        }
+      },
+      {
+        "name": "West Chicago, IL",
+        "date": "2025-05-17",
+        "role": "West_Chicago_2025",
+        "venue": {
+          "name": "The WC Social Club",
+          "address": {
+            "street": "920 Roosevelt Rd",
+            "city": "West Chicago",
+            "state_province": "IL",
+            "country": "US",
+            "postal": "60185"
+          },
+          "maps_url": "https://maps.app.goo.gl/hAuFo9adHTrH2qGc6"
+        }
+      },
+      {
+        "name": "Indianapolis, IN",
+        "date": "2025-05-18",
+        "role": "Indianapolis_2025",
+        "venue": {
+          "name": "Deluxe @ Old National Centre",
+          "address": {
+            "street": "502 N New Jersey St",
+            "city": "Indianapolis",
+            "state_province": "IN",
+            "country": "US",
+            "postal": "46204"
+          },
+          "maps_url": "https://maps.app.goo.gl/XLkwaQnnLf89MGRz9"
+        }
+      },
+      {
+        "name": "Asheville, NC",
+        "date": "2025-05-19",
+        "role": "Asheville_2025",
+        "venue": {
+          "name": "The Orange Peel",
+          "address": {
+            "street": "101 Biltmore Ave",
+            "city": "Asheville",
+            "state_province": "NC",
+            "country": "US",
+            "postal": "28801"
+          },
+          "maps_url": "https://maps.app.goo.gl/wa6gNYdSfRPJKbuJ8"
+        }
+      },
+      {
+        "name": "Norfolk, VA",
+        "date": "2025-05-21",
+        "role": "Norfolk_2025",
+        "venue": {
+          "name": "The Norva",
+          "address": {
+            "street": "317 Monticello Ave",
+            "city": "Norfolk",
+            "state_province": "VA",
+            "country": "US",
+            "postal": "23510"
+          },
+          "maps_url": "https://maps.app.goo.gl/ja8gWQusPgjA3CZt6"
+        }
+      },
+      {
+        "name": "Asbury, NJ",
+        "date": "2025-05-23",
+        "role": "Asbury_2025",
+        "venue": {
+          "name": "House of Independents",
+          "address": {
+            "street": "572 Cookman Ave",
+            "city": "Asbury",
+            "state_province": "NJ",
+            "country": "US",
+            "postal": "07221"
+          },
+          "maps_url": "https://maps.app.goo.gl/c4xngig2HjWTeNLs5"
+        }
+      },
+      {
+        "name": "New Kensington, PA",
+        "date": "2025-05-24",
+        "role": "New_Kensington_2025",
+        "venue": {
+          "name": "Preserving",
+          "address": {
+            "street": "1101 5th Ave Basement",
+            "city": "New Kensington",
+            "state_province": "PA",
+            "country": "US",
+            "postal": "15068"
+          },
+          "maps_url": "https://maps.app.goo.gl/x3R9yYNgm8mcNKsj9"
+        }
+      },
+      {
+        "name": "Toronto, ON",
+        "date": "2025-05-29",
+        "role": "Toronto_2025",
+        "venue": {
+          "name": "Lee's Palace",
+          "address": {
+            "street": "529 Bloor St W",
+            "city": "Toronto",
+            "state_province": "ON",
+            "country": "CA",
+            "postal": "M5S 1Y5"
+          },
+          "maps_url": "https://maps.app.goo.gl/FzkbXNSxGgcHY8Mq6"
+        }
+      }
+    ]    
+  }
 ]

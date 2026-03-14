@@ -1,9 +1,12 @@
+import("dotenv/config")
 import { SlashCommandBuilder, EmbedBuilder } from '@discordjs/builders'
 import { Command } from '../interfaces/Command'
 import { tourData } from '../data/tourdata'
 import { ChatInputCommandInteraction } from 'discord.js'
 import { formatDateLong } from '../utils/utils'
 import { parseISO } from 'date-fns'
+
+const STATIC_URL = process.env.STATIC_URL as string
 
 const command = () => {
   const slashCommandBuilder = new SlashCommandBuilder()
@@ -48,10 +51,18 @@ export const viewShow: Command = {
 
     const guild = interaction.guild
     const role = guild.roles.cache.find(r => r.name === showInput)
-    const attendees = role.members
-
     let attendeesString = ''
-    attendees.map(a => (attendeesString += `<@${a.id}>\n`))
+    
+    try {
+      const attendees = role.members
+      attendees.map(a => (attendeesString += `<@${a.id}>\n`))
+    } catch (error) {
+      console.log("Failed fetching role members.")
+
+      const rolesString = guild.roles.cache.map(role => role.name).join(',\n')
+      console.log(`Roles: ${rolesString}`)
+    }
+
     if (attendeesString === '') attendeesString = 'No attendees from this Discord :('
 
     const venueString = show.venue.maps_url
@@ -73,7 +84,7 @@ export const viewShow: Command = {
 
     await interaction.reply({
       embeds: [embed],
-      files: [{ attachment: tour.poster, name: 'image.jpeg' }],
+      files: [{ attachment: STATIC_URL + tour.poster, name: 'image.jpeg' }],
       ephemeral: true,
     })
   },
