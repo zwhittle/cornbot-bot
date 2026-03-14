@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 import { GuildMember } from 'discord.js'
 
-export const CORN_ID = '311688013857947658'
-export const CORNSERV_ID = '322203935786008586'
+export const CORN_ID = process.env.OWNER_ID ?? '311688013857947658'
+export const CORNSERV_ID = process.env.GUILD_ID ?? '322203935786008586'
 
 export const months = {
   1: 'January',

@@ -39,9 +39,14 @@ export const joke: Command = {
     ]
     const safesearch = chatInteraction.options.getBoolean('safesearch')
     const blacklist = safesearch ? safeBlacklist : undefined
-    let joke: Joke
-    if (category) joke = await fetchJoke([category], blacklist)
-    else joke = await fetchJoke(undefined, blacklist)
+    const joke = category
+      ? await fetchJoke([category], blacklist)
+      : await fetchJoke(undefined, blacklist)
+
+    if (!joke) {
+      await interaction.reply({ content: "Couldn't fetch a joke right now. Try again later!", ephemeral: true })
+      return
+    }
 
     let content = ''
     if (joke.type === 'twopart') content = `${joke.setup}\n\n||${joke.delivery}||`

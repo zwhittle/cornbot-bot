@@ -13,11 +13,13 @@ export class GuildsAPI extends CornbotAPI<Guild> {
 
   async incrementGoodBotCount(id: string) {
     const guild = await this.one(id)
+    if (!guild) return
     await this.update(id, { goodBotCount: ++guild.goodBotCount })
   }
 
   async incrementBadBotCount(id: string) {
     const guild = await this.one(id)
+    if (!guild) return
     await this.update(id, { badBotCount: ++guild.badBotCount })
   }
 }

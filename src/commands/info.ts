@@ -22,6 +22,10 @@ export const info: Command = {
     if (chatInteraction.options.getSubcommand() === 'member') {
       const target = chatInteraction.options.getUser('member') ?? interaction.user
       const member = await new MembersAPI().one(target.id)
+      if (!member) {
+        await interaction.reply({ content: 'Could not find member information.', ephemeral: true })
+        return
+      }
       await memberInfo(interaction, member)
     } else if (chatInteraction.options.getSubcommand() === 'server') {
       if (!interaction.guild) {
@@ -29,6 +33,10 @@ export const info: Command = {
         return
       }
       const guild = await new GuildsAPI().one(interaction.guild.id)
+      if (!guild) {
+        await interaction.reply({ content: 'Could not find server information.', ephemeral: true })
+        return
+      }
       await serverInfo(interaction, guild)
     }
   },

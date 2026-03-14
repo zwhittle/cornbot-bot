@@ -14,6 +14,7 @@ export class MembersAPI extends CornbotAPI<Member> {
 
   async incrementCorns(id: string) {
     const member = await this.one(id)
+    if (!member) return
     await this.update(id, { corns: ++member.corns })
   }
 
