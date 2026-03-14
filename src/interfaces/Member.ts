@@ -6,35 +6,35 @@ export class Member {
   avatar: string
   displayHexColor: string
   displayName: string
-  nickname: string
-  pending: boolean
-  premiumSince: Date
+  nickname: string | null
+  pending: boolean | null
+  premiumSince: Date | null
   guildId: string
   pronouns: string
-  birthdayMonth: number
-  birthdayDay: number
-  joinedAt: Date
+  birthdayMonth: number | undefined
+  birthdayDay: number | undefined
+  joinedAt: Date | null
   corns: number
 
   constructor(
     id: string,
     name: string,
-    avatar: string,
+    avatar: string | null,
     displayHexColor: string,
     displayName: string,
-    nickname: string,
-    pending: boolean,
-    premiumSince: Date,
+    nickname: string | null,
+    pending: boolean | null,
+    premiumSince: Date | null,
     guildId: string,
     pronouns: string,
-    birthdayMonth: number,
-    birthdayDay: number,
-    joinedAt: Date,
+    birthdayMonth: number | undefined,
+    birthdayDay: number | undefined,
+    joinedAt: Date | null,
     corns: number
   ) {
     this.id = id
     this.name = name
-    this.avatar = avatar
+    this.avatar = avatar ?? ''
     this.displayHexColor = displayHexColor
     this.displayName = displayName
     this.nickname = nickname
@@ -48,7 +48,7 @@ export class Member {
     this.corns = corns
   }
 
-  static fromDiscord(memberData: GuildMember) {
+  static fromDiscord(memberData: GuildMember): Member {
     return new this(
       memberData.id,
       memberData.user.username,

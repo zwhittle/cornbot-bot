@@ -18,7 +18,7 @@ export async function messageCreate(message: Message<boolean>) {
     .create({
       id: message.id,
       authorId: message.author.id,
-      guildId: message.guildId,
+      guildId: message.guildId ?? '',
       channelId: message.channelId,
       content: message.content,
       discordCreatedAt: message.createdAt,
@@ -63,7 +63,7 @@ export async function messageCreate(message: Message<boolean>) {
     const guild = await guildsApi.one(message.guild.id)
     const member = await membersApi.one(message.member.user.id)
 
-    if (member.id != botId) {
+    if (member.id !== botId) {
       if (content.includes('🌽')) {
         message
           .react('🌽')

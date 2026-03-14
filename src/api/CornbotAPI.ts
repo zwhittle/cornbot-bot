@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-export interface CornbotAPIResponse {
+export interface CornbotAPIResponse<T = unknown> {
   status: number
-  data: any
+  data: T
 }
 
 export class CornbotAPI<T> {
@@ -25,10 +25,8 @@ export class CornbotAPI<T> {
     return url
   }
 
-  _sync(items: { id: string | number; data: T }[]) {
-    // console.log(...items)
-
-    items.map(async item => {
+  async _sync(items: { id: string | number; data: T }[]) {
+    await Promise.all(items.map(async item => {
       const id = item.id
       const data = item.data
       const logTag = `${id}`
@@ -39,51 +37,50 @@ export class CornbotAPI<T> {
       else if (postRes.status === 409) {
         console.log(`${logTag} already exists. Updating...`)
         const putRes = await this._put(id, data)
-        if (putRes.status != 200) console.error(`PutResError: ${putRes}`)
+        if (putRes.status !== 200) console.error(`PutResError: ${putRes}`)
         else console.log(`${logTag} Updated`)
       } else if (postRes.status === 404) {
         console.error(`PostResError: ${postRes}`)
       } else {
         console.error(`PostResError: ${postRes}`)
       }
-    })
+    }))
   }
 
-  async _post(data: T): Promise<CornbotAPIResponse> {
+  async _post(data: T): Promise<CornbotAPIResponse<T>> {
     const dstr = JSON.stringify(data)
     const res = await fetch(this._url(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
-    
+
     console.log(dstr, res.status)
-    return { status: res.status, data: res.json() as T }
+    return { status: res.status, data: await res.json() as T }
   }
 
-  async _put(id: string | number, data: T): Promise<CornbotAPIResponse> {
+  async _put(id: string | number, data: T): Promise<CornbotAPIResponse<T>> {
     const dstr = JSON.stringify(data)
     const res = await fetch(this._url(id), {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: dstr,
     })
-    // console.log(dstr, res, res.status)
-    return { status: res.status, data: res.json() as T }
+    return { status: res.status, data: await res.json() as T }
   }
 
-  async _patch(id: string | number, body: object): Promise<CornbotAPIResponse> {
+  async _patch(id: string | number, body: object): Promise<CornbotAPIResponse<T>> {
     const res = await fetch(this._url(id), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     })
-    return { status: res.status, data: res.json() as T }
+    return { status: res.status, data: await res.json() as T }
   }
 
-  async _delete(id: string | number): Promise<CornbotAPIResponse> {
+  async _delete(id: string | number): Promise<CornbotAPIResponse<T>> {
     const res = await fetch(this._url(id), { method: 'DELETE' })
-    return { status: res.status, data: res.json() as T }
+    return { status: res.status, data: await res.json() as T }
   }
 
   async one(id: string | number): Promise<T> {
@@ -106,7 +103,7 @@ export class CornbotAPI<T> {
     return res.data
   }
 
-  async update(id: string | number, data: any): Promise<T> {
+  async update(id: string | number, data: Partial<T>): Promise<T> {
     const res = await this._patch(id, data)
     console.log(id, data, res)
     return res.data

@@ -11,7 +11,9 @@ export async function messageUpdate(
   oldMessage: Message<boolean> | PartialMessage,
   newMessage: Message<boolean> | PartialMessage
 ) {
-  const newContent = newMessage.content
+  if (!newMessage.guild || !newMessage.member) return
+
+  const newContent = newMessage.content ?? ''
   const botId = newMessage.client.user.id
   const guildsApi = new GuildsAPI()
   const membersApi = new MembersAPI()
@@ -20,7 +22,7 @@ export async function messageUpdate(
   const member = await membersApi.one(newMessage.member.user.id)
 
   new MessagesAPI()
-    .update(newMessage.id, { content: newMessage.content })
+    .update(newMessage.id, { content: newMessage.content ?? undefined })
     .then(() => console.log(`Message logged`))
 
   new AnalyticsAPI()
@@ -34,7 +36,7 @@ export async function messageUpdate(
     })
     .then(() => console.log(`Event logged`))
 
-  if (member.id != botId) {
+  if (member.id !== botId) {
     if (newContent.includes('🌽')) {
       newMessage
         .react('🌽')

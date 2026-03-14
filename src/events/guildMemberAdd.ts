@@ -8,7 +8,8 @@ export async function guildMemberAdd(member: GuildMember) {
   const guild = member.guild
   await new MembersAPI()
     .create(Member.fromDiscord(member))
-    .then(newMember =>
+    .then(newMember => {
+      if (!guild.systemChannel) return
       guild.systemChannel.send(welcomeMessage(member)).then(message => {
         console.log(`Sent message: ${message.content}`)
         new AnalyticsAPI()
@@ -20,6 +21,6 @@ export async function guildMemberAdd(member: GuildMember) {
           })
           .then(() => console.log(`Event logged`))
       })
-    )
+    })
     .catch(console.error)
 }

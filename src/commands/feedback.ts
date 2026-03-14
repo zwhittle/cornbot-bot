@@ -11,23 +11,20 @@ export const feedback: Command = {
     .addStringOption(option =>
       option.setName('comment').setDescription('Your feedback comment').setRequired(true)
     ),
-  run: async (interaction: ChatInputCommandInteraction) => {
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
     const submitterId = interaction.user.id
-    const comment = interaction.options.getString('comment')
-    const guildId = interaction.guildId
+    const comment = chatInteraction.options.getString('comment') ?? ''
+    const guildId = interaction.guildId ?? ''
     const channelId = interaction.channelId
 
-    new FeedbacksAPI()
-      .create({
-        submitterId: submitterId,
-        comment: comment,
-        guildId: guildId,
-        channelId: channelId,
-      })
-      .then(newFeedback => submitFeedback(newFeedback, interaction.client))
-      .then(
-        async newFeedback =>
-          await interaction.reply(`Your feedback '${newFeedback.comment}' has been submitted!`)
-      )
+    const newFeedback = await new FeedbacksAPI().create({
+      submitterId: submitterId,
+      comment: comment,
+      guildId: guildId,
+      channelId: channelId,
+    })
+    const submittedFeedback = await submitFeedback(newFeedback, interaction.client)
+    await interaction.reply(`Your feedback '${submittedFeedback.comment}' has been submitted!`)
   },
 }

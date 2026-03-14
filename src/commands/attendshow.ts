@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { Command } from '../interfaces/Command'
-import { tourData } from '../data/tourdata'
 import { ChatInputCommandInteraction, GuildMember } from 'discord.js'
+import { addTourSubcommands } from '../utils/commands'
 
 function command() {
   const slashCommandBuilder = new SlashCommandBuilder()
@@ -10,33 +10,22 @@ function command() {
       'Request a role that shows you attended (or are planning to attend) a PTH show.'
     )
 
-  tourData.map(tour => {
-    let choices = []
-    tour.dates.map(date => choices.push({ name: date.name, value: date.role }))
-
-    slashCommandBuilder.addSubcommand(subcommand =>
-      subcommand
-        .setName(tour.key)
-        .setDescription(tour.description)
-        .addStringOption(option =>
-          option
-            .setName('show')
-            .setDescription('Which show?')
-            .setRequired(true)
-            .setChoices(...choices)
-        )
-    )
-  })
-
-  return slashCommandBuilder
+  return addTourSubcommands(slashCommandBuilder)
 }
 
 export const attendShow: Command = {
   data: command(),
-  run: async (interaction: ChatInputCommandInteraction) => {
-    const show = interaction.options.getString('show').replace(/_/g, ' ')
+  run: async (interaction) => {
+    const chatInteraction = interaction as ChatInputCommandInteraction
+    const showValue = chatInteraction.options.getString('show')
+    if (!showValue || !interaction.guild) return
+    const show = showValue.replace(/_/g, ' ')
     const guild = interaction.guild
     const role = guild.roles.cache.find(r => r.name === show)
+    if (!role) {
+      await interaction.reply({ content: 'Role not found for this show.', ephemeral: true })
+      return
+    }
     const guildMember = interaction.member as GuildMember
 
     if (guildMember.roles.cache.some(r => r.name === role.name)) {
