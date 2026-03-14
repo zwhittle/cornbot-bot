@@ -24,7 +24,11 @@ export const feedback: Command = {
       guildId: guildId,
       channelId: channelId,
     })
-    const submittedFeedback = await submitFeedback(newFeedback, interaction.client)
-    await interaction.reply(`Your feedback '${submittedFeedback.comment}' has been submitted!`)
+    if (!newFeedback) {
+      await interaction.reply({ content: 'Failed to submit feedback. Please try again later.', ephemeral: true })
+      return
+    }
+    await submitFeedback(newFeedback, interaction.client)
+    await interaction.reply(`Your feedback '${newFeedback.comment}' has been submitted!`)
   },
 }

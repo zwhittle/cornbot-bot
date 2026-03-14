@@ -46,6 +46,10 @@ export const report: Command = {
       channelId: channelId,
       userSubmitted: true,
     })
+    if (!newReport) {
+      await interaction.reply({ content: 'Failed to submit report. Please try again later.', ephemeral: true })
+      return
+    }
     await submitReport(newReport, interaction.client)
     await interaction.reply(`Your report has been submitted!`)
   },

@@ -6,7 +6,8 @@ import { UserReport } from 'src/interfaces/UserReport'
 import { tourData } from '../data/tourdata'
 
 export function addTourSubcommands(builder: SlashCommandBuilder) {
-  tourData.forEach(tour => {
+  const activeTours = tourData.filter(tour => tour.active)
+  activeTours.forEach(tour => {
     const choices = tour.dates.map(date => ({ name: date.name, value: date.role }))
 
     builder.addSubcommand(subcommand =>

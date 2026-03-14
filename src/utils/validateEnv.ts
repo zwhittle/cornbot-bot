@@ -1,13 +1,13 @@
 export const validateEnv = () => {
-  if (!process.env.DISCORD_TOKEN) {
-    console.log('Missing DISCORD_TOKEN environment variable')
-    return false
+  const required = ['BOT_TOKEN', 'CLIENT_ID', 'API_DOMAIN', 'STATIC_URL']
+  let valid = true
+
+  for (const name of required) {
+    if (!process.env[name]) {
+      console.error(`Missing required environment variable: ${name}`)
+      valid = false
+    }
   }
 
-  if (!process.env.CLIENT_ID) {
-    console.log('Missing CLIENT_ID environment variable')
-    return false
-  }
-
-  return true
+  return valid
 }

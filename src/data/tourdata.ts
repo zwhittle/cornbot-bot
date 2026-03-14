@@ -26,6 +26,7 @@ export interface Tour {
   name: string
   description: string
   poster: string
+  active: boolean
   dates: TourDate[]
 }
 
@@ -35,6 +36,7 @@ export const tourData: Tour[] = [
     name: 'Canada Summer 2022',
     description: 'The Band tours Canada in Summer 2022',
     poster: 'tour_canada_2022.jpeg',
+    active: false,
     dates: [
       {
         name: 'Ottawa, ON',
@@ -79,6 +81,7 @@ export const tourData: Tour[] = [
     name: 'Sea Change Super Friendly Fest 2022',
     description: 'The Band headlines Sea Change Super Friendly Fest 2022',
     poster: 'tour_seachange_2022.jpeg',
+    active: false,
     dates: [
       {
         name: 'Edmonton, AB',
@@ -93,6 +96,7 @@ export const tourData: Tour[] = [
     name: 'Australia 2023',
     description: 'The Band joins Plini across Australia in February 2023',
     poster: 'tour_australia_2023.jpeg',
+    active: false,
     dates: [
       { name: 'Sydney', date: '2023-01-28', venue: { name: 'Metro Theatre' }, role: 'Sydney_2023' },
       {
@@ -128,6 +132,7 @@ export const tourData: Tour[] = [
     name: 'Ontario 2023',
     description: 'The Band embarks on Ontario Spring Tour 2023',
     poster: 'tour_ontario_2023.png',
+    active: false,
     dates: [
       {
         name: 'London, ON',
@@ -184,6 +189,7 @@ export const tourData: Tour[] = [
     name: 'Halloween is For Always',
     description: 'The Band takes a Halloween costume party on tour across North America',
     poster: 'tour_halloween_2023.jpeg',
+    active: false,
     dates: [
       {
         name: 'Ferndale, MI',
@@ -654,6 +660,7 @@ export const tourData: Tour[] = [
     name: 'Ontario Tour Spring 2024',
     description: 'The Bands goes on a quick tour of Ontario in Spring 2024',
     poster: 'tour_spring_2024.jpeg',
+    active: false,
     dates: [
       {
         name: 'Tillsonburg, ON',
@@ -698,6 +705,7 @@ export const tourData: Tour[] = [
     name: 'Volition X',
     description: 'The Band tours North America to celebrate the 10th anniversary of Volition',
     poster: 'tour_volitionx_2024.jpeg',
+    active: false,
     dates: [
       {
         name: 'Detroit, MI',
@@ -1169,6 +1177,7 @@ export const tourData: Tour[] = [
     name: 'BTBAM Comalaska Tour',
     description: 'The Band tours North America supporting Between the Buried and Me',
     poster: 'tour_comalaska_2025.jpeg',
+    active: false,
     dates: [
       {
         "name": "Tillsonburg, ON (Night One)",

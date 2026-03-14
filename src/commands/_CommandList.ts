@@ -9,6 +9,7 @@ import { viewShow } from './viewshow'
 import { attendShow } from './attendshow'
 import { ctxUserInfo } from './ctxUserInfo'
 import { joke } from './joke'
+import { status } from './status'
 
 export const CommandList: Command[] = [
   corn,
@@ -21,4 +22,7 @@ export const CommandList: Command[] = [
   viewShow,
   attendShow,
   ctxUserInfo,
+  status,
 ]
+
+export const CommandMap = new Map(CommandList.map(cmd => [cmd.data.name, cmd]))
