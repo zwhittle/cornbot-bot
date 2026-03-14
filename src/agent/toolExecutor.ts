@@ -1,10 +1,6 @@
 import { Message } from 'discord.js'
 import { MembersAPI } from '../api/MembersAPI'
 import { GuildsAPI } from '../api/GuildsAPI'
-import { FeedbacksAPI } from '../api/FeedbacksAPI'
-import { ReportsAPI } from '../api/ReportsAPI'
-import { fetchJoke, JokeCategory } from '../utils/jokes'
-import { submitFeedback, submitReport } from '../utils/commands'
 import { tourData } from '../data/tourdata'
 
 export interface ToolContext {
@@ -33,30 +29,52 @@ export async function executeTool(
   try {
     switch (toolName) {
       case 'lookup_member': {
-        const member = await new MembersAPI().one(toolInput.user_id as string)
+        const userId = toolInput.user_id as string
+        const member = await new MembersAPI().one(userId)
         if (!member) return JSON.stringify({ error: 'Member not found' })
-        return JSON.stringify(member)
+
+        const result: Record<string, unknown> = { ...member }
+
+        try {
+          const guild = context.message.guild
+          if (guild) {
+            const discordMember = await guild.members.fetch(userId)
+            result.roles = discordMember.roles.cache
+              .filter(r => r.name !== '@everyone')
+              .map(r => r.name)
+            result.avatarURL = discordMember.user.displayAvatarURL()
+            result.accountCreatedAt = discordMember.user.createdAt.toISOString()
+          }
+        } catch {
+          // Discord data unavailable, return API data only
+        }
+
+        return JSON.stringify(result)
       }
 
       case 'lookup_guild': {
-        const guild = await new GuildsAPI().one(toolInput.guild_id as string)
+        const guildId = toolInput.guild_id as string
+        const guild = await new GuildsAPI().one(guildId)
         if (!guild) return JSON.stringify({ error: 'Guild not found' })
-        return JSON.stringify(guild)
-      }
 
-      case 'give_corn': {
-        await new MembersAPI().incrementCorns(toolInput.user_id as string)
-        return JSON.stringify({ success: true, message: 'Corn given!' })
-      }
+        const result: Record<string, unknown> = { ...guild }
 
-      case 'tell_joke': {
-        const category = (toolInput.category as JokeCategory) || 'Any'
-        const joke = await fetchJoke([category])
-        if (!joke) return JSON.stringify({ error: 'Failed to fetch joke' })
-        if (joke.type === 'single') {
-          return JSON.stringify({ joke: joke.joke })
+        try {
+          const discordGuild = context.message.guild
+          if (discordGuild && discordGuild.id === guildId) {
+            result.channelCount = discordGuild.channels.cache.size
+            result.roleCount = discordGuild.roles.cache.size
+            result.boostLevel = discordGuild.premiumTier
+            result.boostCount = discordGuild.premiumSubscriptionCount
+            result.verificationLevel = discordGuild.verificationLevel
+            const owner = await discordGuild.fetchOwner()
+            result.owner = owner.user.username
+          }
+        } catch {
+          // Discord data unavailable, return API data only
         }
-        return JSON.stringify({ setup: joke.setup, delivery: joke.delivery })
+
+        return JSON.stringify(result)
       }
 
       case 'get_tour_info': {
@@ -168,35 +186,6 @@ export async function executeTool(
           api: apiStatus,
           ping: `${ping}ms`,
         })
-      }
-
-      case 'submit_feedback': {
-        const comment = toolInput.comment as string
-        const feedback = {
-          submitterId: context.message.author.id,
-          comment,
-          guildId: context.message.guildId ?? '',
-          channelId: context.message.channelId,
-        }
-        await new FeedbacksAPI().create(feedback)
-        await submitFeedback(feedback, context.message.client)
-        return JSON.stringify({ success: true, message: 'Feedback submitted!' })
-      }
-
-      case 'submit_report': {
-        const reportedUserId = toolInput.user_id as string
-        const reason = toolInput.reason as string
-        const report = {
-          reportedUserId,
-          reason,
-          reportedById: context.message.author.id,
-          guildId: context.message.guildId ?? '',
-          channelId: context.message.channelId,
-          userSubmitted: true,
-        }
-        await new ReportsAPI().create(report)
-        await submitReport(report, context.message.client)
-        return JSON.stringify({ success: true, message: 'Report submitted.' })
       }
 
       default:

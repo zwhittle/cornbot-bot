@@ -4,7 +4,7 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
   {
     name: 'lookup_member',
     description:
-      'Look up information about a server member by their Discord user ID. Returns their name, display name, corns count, birthday, pronouns, join date, and other profile info.',
+      'Look up information about a server member by their Discord user ID. Returns profile data from the API and live Discord info including roles, avatar, and account age.',
     input_schema: {
       type: 'object' as const,
       properties: {
@@ -19,7 +19,7 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
   {
     name: 'lookup_guild',
     description:
-      'Look up information about the current Discord server/guild. Returns server name, member count, corn score, good/bad bot counts, and creation date.',
+      'Look up information about the current Discord server/guild. Returns API data and live Discord info including roles, channels, boost status, and verification level.',
     input_schema: {
       type: 'object' as const,
       properties: {
@@ -29,36 +29,6 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
         },
       },
       required: ['guild_id'],
-    },
-  },
-  {
-    name: 'give_corn',
-    description:
-      'Give a corn (increment corn count) to a server member. Use this when someone asks you to give corns to a user or when you want to reward someone.',
-    input_schema: {
-      type: 'object' as const,
-      properties: {
-        user_id: {
-          type: 'string',
-          description: 'The Discord user ID to give corn to',
-        },
-      },
-      required: ['user_id'],
-    },
-  },
-  {
-    name: 'tell_joke',
-    description: 'Fetch a random joke. Optionally specify a category.',
-    input_schema: {
-      type: 'object' as const,
-      properties: {
-        category: {
-          type: 'string',
-          description: 'Joke category',
-          enum: ['Programming', 'Misc', 'Dark', 'Pun', 'Spooky', 'Christmas', 'Any'],
-        },
-      },
-      required: [],
     },
   },
   {
@@ -157,40 +127,6 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
       type: 'object' as const,
       properties: {},
       required: [],
-    },
-  },
-  {
-    name: 'submit_feedback',
-    description:
-      'Submit feedback about the bot to the bot owner. Use when a user wants to give feedback or suggestions.',
-    input_schema: {
-      type: 'object' as const,
-      properties: {
-        comment: {
-          type: 'string',
-          description: 'The feedback comment',
-        },
-      },
-      required: ['comment'],
-    },
-  },
-  {
-    name: 'submit_report',
-    description:
-      'Report a user for breaking a server rule. Note: reports submitted this way are visible in the channel. For private reports, users should use the /report slash command.',
-    input_schema: {
-      type: 'object' as const,
-      properties: {
-        user_id: {
-          type: 'string',
-          description: 'The Discord user ID of the user being reported',
-        },
-        reason: {
-          type: 'string',
-          description: 'The reason for the report',
-        },
-      },
-      required: ['user_id', 'reason'],
     },
   },
 ]
