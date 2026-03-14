@@ -1,17 +1,14 @@
 import Anthropic from '@anthropic-ai/sdk'
+import AnthropicBedrock from '@anthropic-ai/bedrock-sdk'
 import { Message, TextChannel } from 'discord.js'
 import { AGENT_TOOLS } from './tools'
 import { executeTool } from './toolExecutor'
 
-const anthropic = new Anthropic()
+const anthropic = new AnthropicBedrock({
+  awsRegion: process.env.AWS_REGION || 'us-east-1',
+})
 
-const WEB_SEARCH_TOOL: Anthropic.Messages.WebSearchTool20250305 = {
-  type: 'web_search_20250305',
-  name: 'web_search',
-  max_uses: 3,
-}
-
-const ALL_TOOLS: Anthropic.Messages.ToolUnion[] = [...AGENT_TOOLS, WEB_SEARCH_TOOL]
+const ALL_TOOLS = AGENT_TOOLS
 
 const SYSTEM_PROMPT = `You are Cornbot, the official bot of the FartCord Discord server. You are made of corn and you love corn. You have a fun, slightly irreverent personality — you enjoy corn puns, you're a bit sarcastic but always friendly.
 
@@ -89,7 +86,7 @@ export async function handleAgentMessage(message: Message): Promise<void> {
 
     // Agentic loop
     let response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: process.env.BEDROCK_MODEL_ID || 'us.anthropic.claude-sonnet-4-20250514-v1:0',
       max_tokens: 1024,
       system: systemWithContext,
       messages: anthropicMessages,
@@ -118,7 +115,7 @@ export async function handleAgentMessage(message: Message): Promise<void> {
       anthropicMessages.push({ role: 'user', content: toolResults })
 
       response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: process.env.BEDROCK_MODEL_ID || 'us.anthropic.claude-sonnet-4-20250514-v1:0',
         max_tokens: 1024,
         system: systemWithContext,
         messages: anthropicMessages,

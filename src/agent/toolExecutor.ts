@@ -1,4 +1,5 @@
 import { Message } from 'discord.js'
+import axios from 'axios'
 import { MembersAPI } from '../api/MembersAPI'
 import { GuildsAPI } from '../api/GuildsAPI'
 import { ToursAPI } from '../api/ToursAPI'
@@ -336,6 +337,25 @@ export async function executeTool(
         const updated = await toursApi.replace(tourKey, tour)
         if (!updated) return JSON.stringify({ error: 'Failed to update tour.' })
         return JSON.stringify({ success: true, message: `Tour '${tour.name}' updated.`, tour: updated })
+      }
+
+      case 'web_search': {
+        const query = toolInput.query as string
+        const apiKey = process.env.BRAVE_SEARCH_API_KEY
+        if (!apiKey) return JSON.stringify({ error: 'Web search is not configured.' })
+
+        const res = await axios.get('https://api.search.brave.com/res/v1/web/search', {
+          params: { q: query, count: 5 },
+          headers: { 'X-Subscription-Token': apiKey },
+        })
+
+        const results = (res.data.web?.results ?? []).map((r: { title: string; url: string; description: string }) => ({
+          title: r.title,
+          url: r.url,
+          description: r.description,
+        }))
+
+        return JSON.stringify({ query, results })
       }
 
       default:

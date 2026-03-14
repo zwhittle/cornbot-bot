@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/bedrock-sdk": "^0.26.4",
     "@anthropic-ai/sdk": "^0.78.0",
     "@discordjs/builders": "^1.6.1",
     "@discordjs/rest": "^1.7.0",
