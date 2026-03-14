@@ -163,7 +163,7 @@ export const AGENT_TOOLS: Anthropic.Tool[] = [
   {
     name: 'add_tour_dates',
     description:
-      'Add one or more dates to an existing tour. Owner-only. Each date needs a name, date, venue, and role name for Discord.',
+      'Add one or more dates to an existing tour. Owner-only. Each date needs a name, date, venue, and role name for Discord. Discord roles are automatically created and their IDs stored.',
     input_schema: {
       type: 'object' as const,
       properties: {

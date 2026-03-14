@@ -18,6 +18,7 @@ export interface TourDate {
   time?: string
   venue: Venue
   role: string
+  role_id?: string
   ticket_url?: string
 }
 

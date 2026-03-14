@@ -157,11 +157,24 @@ export async function executeTool(
         const guild = context.message.guild
         if (!guild) return JSON.stringify({ error: 'This can only be used in a server.' })
 
-        const role = guild.roles.cache.find(r => r.name === showName)
-        if (!role) return JSON.stringify({ error: `Role not found for show: ${showName}` })
+        // Try ID-based lookup first, fall back to name-based
+        let foundRole: import('discord.js').Role | undefined
+        const allTours = await new ToursAPI().all()
+        for (const tour of allTours) {
+          const tourDate = tour.dates.find(d => d.role.replace(/_/g, ' ') === showName)
+          if (tourDate?.role_id) {
+            foundRole = guild.roles.cache.get(tourDate.role_id)
+            if (foundRole) break
+          }
+        }
+        if (!foundRole) {
+          foundRole = guild.roles.cache.find(r => r.name === showName)
+        }
+        if (!foundRole) return JSON.stringify({ error: `Role not found for show: ${showName}` })
+        const role = foundRole
 
         const member = await guild.members.fetch(context.message.author.id)
-        if (member.roles.cache.some(r => r.name === role.name)) {
+        if (member.roles.cache.some(r => r.id === role.id)) {
           await member.roles.remove(role)
           return JSON.stringify({ success: true, message: `Removed ${role.name} role.`, action: 'removed' })
         } else {
@@ -248,10 +261,25 @@ export async function executeTool(
           }
         })
 
+        // Auto-create Discord roles for each new date
+        const guild = context.message.guild
+        if (guild) {
+          for (const date of newDates) {
+            const roleName = date.role.replace(/_/g, ' ')
+            const existingRole = guild.roles.cache.find(r => r.name === roleName)
+            if (existingRole) {
+              date.role_id = existingRole.id
+            } else {
+              const newRole = await guild.roles.create({ name: roleName })
+              date.role_id = newRole.id
+            }
+          }
+        }
+
         tour.dates.push(...newDates)
         const updated = await toursApi.replace(tourKey, tour)
         if (!updated) return JSON.stringify({ error: 'Failed to update tour with new dates.' })
-        return JSON.stringify({ success: true, message: `Added ${newDates.length} date(s) to '${tour.name}'.`, tour: updated })
+        return JSON.stringify({ success: true, message: `Added ${newDates.length} date(s) to '${tour.name}'. Discord roles created.`, tour: updated })
       }
 
       case 'update_tour': {
