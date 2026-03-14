@@ -1,7 +1,9 @@
 import { Message } from 'discord.js'
 import { MembersAPI } from '../api/MembersAPI'
 import { GuildsAPI } from '../api/GuildsAPI'
-import { tourData } from '../data/tourdata'
+import { ToursAPI } from '../api/ToursAPI'
+import { TourDate, Address } from '../interfaces/Tour'
+import { CORN_ID } from '../utils/utils'
 
 export interface ToolContext {
   message: Message
@@ -78,14 +80,19 @@ export async function executeTool(
       }
 
       case 'get_tour_info': {
+        const toursApi = new ToursAPI()
         const tourKey = toolInput.tour_key as string | undefined
         if (tourKey) {
-          const tour = tourData.find(t => t.key === tourKey)
-          if (!tour) return JSON.stringify({ error: `Tour '${tourKey}' not found`, available: tourData.map(t => t.key) })
+          const tour = await toursApi.one(tourKey)
+          if (!tour) {
+            const allTours = await toursApi.all()
+            return JSON.stringify({ error: `Tour '${tourKey}' not found`, available: allTours.map(t => t.key) })
+          }
           return JSON.stringify(tour)
         }
+        const allTours = await toursApi.all()
         return JSON.stringify(
-          tourData.map(t => ({
+          allTours.map(t => ({
             key: t.key,
             name: t.name,
             description: t.description,
@@ -186,6 +193,84 @@ export async function executeTool(
           api: apiStatus,
           ping: `${ping}ms`,
         })
+      }
+
+      case 'create_tour': {
+        if (context.message.author.id !== CORN_ID) {
+          return JSON.stringify({ error: 'Only the bot owner can manage tours.' })
+        }
+        const tour = {
+          key: toolInput.key as string,
+          name: toolInput.name as string,
+          description: toolInput.description as string,
+          poster: (toolInput.poster as string) ?? '',
+          active: (toolInput.active as boolean) ?? true,
+          dates: [],
+        }
+        const created = await new ToursAPI().create(tour)
+        if (!created) return JSON.stringify({ error: 'Failed to create tour.' })
+        return JSON.stringify({ success: true, message: `Tour '${tour.name}' created.`, tour: created })
+      }
+
+      case 'add_tour_dates': {
+        if (context.message.author.id !== CORN_ID) {
+          return JSON.stringify({ error: 'Only the bot owner can manage tours.' })
+        }
+        const toursApi = new ToursAPI()
+        const tourKey = toolInput.tour_key as string
+        const tour = await toursApi.one(tourKey)
+        if (!tour) return JSON.stringify({ error: `Tour '${tourKey}' not found.` })
+
+        const rawDates = toolInput.dates as Array<Record<string, unknown>>
+        const newDates: TourDate[] = rawDates.map(d => {
+          const address: Address | undefined =
+            d.venue_street && d.venue_city && d.venue_state_province && d.venue_country && d.venue_postal
+              ? {
+                  street: d.venue_street as string,
+                  city: d.venue_city as string,
+                  state_province: d.venue_state_province as string,
+                  country: d.venue_country as 'US' | 'CA',
+                  postal: d.venue_postal as string,
+                }
+              : undefined
+
+          return {
+            name: d.name as string,
+            date: d.date as string,
+            time: d.time as string | undefined,
+            venue: {
+              name: d.venue_name as string,
+              address,
+              maps_url: d.venue_maps_url as string | undefined,
+            },
+            role: d.role as string,
+            ticket_url: d.ticket_url as string | undefined,
+          }
+        })
+
+        tour.dates.push(...newDates)
+        const updated = await toursApi.replace(tourKey, tour)
+        if (!updated) return JSON.stringify({ error: 'Failed to update tour with new dates.' })
+        return JSON.stringify({ success: true, message: `Added ${newDates.length} date(s) to '${tour.name}'.`, tour: updated })
+      }
+
+      case 'update_tour': {
+        if (context.message.author.id !== CORN_ID) {
+          return JSON.stringify({ error: 'Only the bot owner can manage tours.' })
+        }
+        const toursApi = new ToursAPI()
+        const tourKey = toolInput.tour_key as string
+        const tour = await toursApi.one(tourKey)
+        if (!tour) return JSON.stringify({ error: `Tour '${tourKey}' not found.` })
+
+        if (toolInput.name !== undefined) tour.name = toolInput.name as string
+        if (toolInput.description !== undefined) tour.description = toolInput.description as string
+        if (toolInput.poster !== undefined) tour.poster = toolInput.poster as string
+        if (toolInput.active !== undefined) tour.active = toolInput.active as boolean
+
+        const updated = await toursApi.replace(tourKey, tour)
+        if (!updated) return JSON.stringify({ error: 'Failed to update tour.' })
+        return JSON.stringify({ success: true, message: `Tour '${tour.name}' updated.`, tour: updated })
       }
 
       default:

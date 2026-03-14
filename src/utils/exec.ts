@@ -3,14 +3,14 @@ import {
   GuildScheduledEventCreateOptions,
   GuildScheduledEventPrivacyLevel,
 } from 'discord.js'
-import { tourData } from '../data/tourdata'
+import { ToursAPI } from '../api/ToursAPI'
 import { CORNSERV_ID } from './utils'
 
 const STATIC_URL = process.env.STATIC_URL as string
 
 export async function launchTour(client: Client, tourKey: string) {
   const cornserv = await client.guilds.fetch(CORNSERV_ID)
-  const tour = tourData.find(t => t.key === tourKey)
+  const tour = await new ToursAPI().one(tourKey)
 
   if (!tour) {
     console.error(`Tour not found: ${tourKey}`)

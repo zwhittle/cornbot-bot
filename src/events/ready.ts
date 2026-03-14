@@ -1,7 +1,9 @@
 import { Client } from 'discord.js'
 import { GuildsAPI } from '../api/GuildsAPI'
 import { MembersAPI } from '../api/MembersAPI'
+import { ToursAPI } from '../api/ToursAPI'
 import { AnalyticsAPI } from '../api/AnalyticsAPI'
+import { tourData } from '../data/tourdata'
 import { CronJob } from 'cron'
 
 export const ready = async (BOT: Client) => {
@@ -20,6 +22,9 @@ export const ready = async (BOT: Client) => {
 
   console.log('Syncing Guilds...')
   guildsApi.sync(connectedGuilds)
+
+  console.log('Syncing Tours...')
+  new ToursAPI().sync(tourData)
 
   await Promise.all(connectedGuilds.map(async connGuild => {
     const members = await connGuild.members.fetch()
