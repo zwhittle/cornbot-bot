@@ -6,6 +6,7 @@ import { deleteAllEvents, launchTour } from '../utils/exec'
 import { AnalyticsAPI } from '../api/AnalyticsAPI'
 import { MessagesAPI } from '../api/MessagesAPI'
 import { handleMessageReactions } from '../utils/messageReactions'
+import { handleAgentMessage } from '../agent'
 
 export async function messageCreate(message: Message<boolean>) {
   const content = message.content
@@ -56,6 +57,21 @@ export async function messageCreate(message: Message<boolean>) {
       }
     }
     return
+  }
+
+  // Handle AI agent responses when bot is @mentioned or replied to
+  if (!message.author.bot && message.guild) {
+    const isMentioned = message.mentions.has(message.client.user!.id)
+    let isReplyToBot = false
+    if (message.reference) {
+      try {
+        const referenced = await message.fetchReference()
+        isReplyToBot = referenced.author.id === message.client.user!.id
+      } catch {}
+    }
+    if (isMentioned || isReplyToBot) {
+      await handleAgentMessage(message)
+    }
   }
 
   await handleMessageReactions(message, content, botId, guildsApi, membersApi)
